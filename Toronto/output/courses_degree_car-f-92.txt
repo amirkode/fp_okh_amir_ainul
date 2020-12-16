@@ -1,543 +1,543 @@
-0291, Degree : 382, Score : 0.009282433844434185
-0135, Degree : 325, Score : 0.007897358637280394
-0382, Degree : 302, Score : 0.007338468641411319
-0204, Degree : 297, Score : 0.00721697081622239
-0071, Degree : 287, Score : 0.006973975165844531
-0236, Degree : 273, Score : 0.00663378125531553
-0049, Degree : 261, Score : 0.0063421864748621
-0332, Degree : 253, Score : 0.006147789954559813
-0304, Degree : 248, Score : 0.006026292129370885
-0299, Degree : 240, Score : 0.005831895609068598
-0302, Degree : 237, Score : 0.00575899691395524
-0297, Degree : 236, Score : 0.005734697348917454
-0306, Degree : 235, Score : 0.0057103977838796685
-0173, Degree : 232, Score : 0.005637499088766311
-0237, Degree : 231, Score : 0.005613199523728525
-0205, Degree : 230, Score : 0.005588899958690739
-0156, Degree : 224, Score : 0.005443102568464024
-0011, Degree : 217, Score : 0.005273005613199524
-0164, Degree : 213, Score : 0.005175807353048381
-0456, Degree : 211, Score : 0.005127208222972809
-0521, Degree : 205, Score : 0.004981410832746094
-0289, Degree : 196, Score : 0.004762714747406021
-0376, Degree : 196, Score : 0.004762714747406021
-0133, Degree : 195, Score : 0.004738415182368235
-0050, Degree : 193, Score : 0.0046898160522926636
-0256, Degree : 191, Score : 0.004641216922217093
-0368, Degree : 190, Score : 0.004616917357179307
-0238, Degree : 182, Score : 0.00442252083687702
-0329, Degree : 178, Score : 0.004325322576725877
-0353, Degree : 178, Score : 0.004325322576725877
-0001, Degree : 177, Score : 0.004301023011688091
-0419, Degree : 177, Score : 0.004301023011688091
-0384, Degree : 176, Score : 0.004276723446650305
-0290, Degree : 175, Score : 0.004252423881612519
-0330, Degree : 174, Score : 0.004228124316574733
-0422, Degree : 173, Score : 0.004203824751536947
-0174, Degree : 171, Score : 0.004155225621461376
-0331, Degree : 169, Score : 0.004106626491385804
-0207, Degree : 165, Score : 0.0040094282312346605
-0258, Degree : 163, Score : 0.003960829101159089
-0377, Degree : 163, Score : 0.003960829101159089
-0136, Degree : 159, Score : 0.003863630841007946
-0260, Degree : 159, Score : 0.003863630841007946
-0292, Degree : 159, Score : 0.003863630841007946
-0356, Degree : 158, Score : 0.00383933127597016
-0381, Degree : 158, Score : 0.00383933127597016
-0288, Degree : 152, Score : 0.0036935338857434453
-0340, Degree : 151, Score : 0.0036692343207056595
-0261, Degree : 148, Score : 0.003596335625592302
-0101, Degree : 147, Score : 0.003572036060554516
-0103, Degree : 147, Score : 0.003572036060554516
-0178, Degree : 147, Score : 0.003572036060554516
-0259, Degree : 146, Score : 0.00354773649551673
-0073, Degree : 145, Score : 0.0035234369304789443
-0241, Degree : 145, Score : 0.0035234369304789443
-0452, Degree : 144, Score : 0.0034991373654411585
-0122, Degree : 143, Score : 0.0034748378004033726
-0418, Degree : 143, Score : 0.0034748378004033726
-0035, Degree : 142, Score : 0.003450538235365587
-0242, Degree : 142, Score : 0.003450538235365587
-0355, Degree : 142, Score : 0.003450538235365587
-0423, Degree : 142, Score : 0.003450538235365587
-0432, Degree : 141, Score : 0.003426238670327801
-0524, Degree : 140, Score : 0.0034019391052900155
-0270, Degree : 138, Score : 0.003353339975214444
-0087, Degree : 136, Score : 0.003304740845138872
-0119, Degree : 136, Score : 0.003304740845138872
-0132, Degree : 136, Score : 0.003304740845138872
-0380, Degree : 136, Score : 0.003304740845138872
-0386, Degree : 136, Score : 0.003304740845138872
-0149, Degree : 134, Score : 0.0032561417150633004
-0305, Degree : 133, Score : 0.0032318421500255145
-0045, Degree : 132, Score : 0.0032075425849877287
-0104, Degree : 132, Score : 0.0032075425849877287
-0255, Degree : 132, Score : 0.0032075425849877287
-0102, Degree : 131, Score : 0.003183243019949943
-0097, Degree : 130, Score : 0.003158943454912157
-0230, Degree : 130, Score : 0.003158943454912157
-0110, Degree : 129, Score : 0.003134643889874371
-0271, Degree : 129, Score : 0.003134643889874371
-0303, Degree : 129, Score : 0.003134643889874371
-0015, Degree : 128, Score : 0.0031103443248365853
-0106, Degree : 127, Score : 0.0030860447597987994
-0366, Degree : 126, Score : 0.0030617451947610136
-0108, Degree : 125, Score : 0.003037445629723228
-0095, Degree : 124, Score : 0.0030131460646854423
-0365, Degree : 124, Score : 0.0030131460646854423
-0148, Degree : 123, Score : 0.0029888464996476564
-0362, Degree : 123, Score : 0.0029888464996476564
-0100, Degree : 122, Score : 0.0029645469346098706
-0257, Degree : 121, Score : 0.0029402473695720847
-0520, Degree : 121, Score : 0.0029402473695720847
-0117, Degree : 120, Score : 0.002915947804534299
-0086, Degree : 117, Score : 0.0028430491094209413
-0128, Degree : 116, Score : 0.0028187495443831555
-0134, Degree : 116, Score : 0.0028187495443831555
-0301, Degree : 116, Score : 0.0028187495443831555
-0125, Degree : 115, Score : 0.0027944499793453696
-0293, Degree : 115, Score : 0.0027944499793453696
-0002, Degree : 114, Score : 0.0027701504143075838
-0098, Degree : 114, Score : 0.0027701504143075838
-0160, Degree : 114, Score : 0.0027701504143075838
-0239, Degree : 114, Score : 0.0027701504143075838
-0267, Degree : 114, Score : 0.0027701504143075838
-0263, Degree : 113, Score : 0.002745850849269798
-0268, Degree : 113, Score : 0.002745850849269798
-0093, Degree : 112, Score : 0.002721551284232012
-0146, Degree : 112, Score : 0.002721551284232012
-0150, Degree : 112, Score : 0.002721551284232012
-0264, Degree : 111, Score : 0.002697251719194226
-0300, Degree : 111, Score : 0.002697251719194226
-0014, Degree : 110, Score : 0.002672952154156441
-0107, Degree : 110, Score : 0.002672952154156441
-0338, Degree : 110, Score : 0.002672952154156441
-0358, Degree : 110, Score : 0.002672952154156441
-0312, Degree : 109, Score : 0.002648652589118655
-0012, Degree : 108, Score : 0.002624353024080869
-0298, Degree : 108, Score : 0.002624353024080869
-0425, Degree : 108, Score : 0.002624353024080869
-0428, Degree : 108, Score : 0.002624353024080869
-0094, Degree : 107, Score : 0.0026000534590430832
-0123, Degree : 107, Score : 0.0026000534590430832
-0296, Degree : 107, Score : 0.0026000534590430832
-0315, Degree : 107, Score : 0.0026000534590430832
-0096, Degree : 106, Score : 0.0025757538940052974
-0099, Degree : 105, Score : 0.0025514543289675115
-0152, Degree : 105, Score : 0.0025514543289675115
-0153, Degree : 103, Score : 0.00250285519889194
-0192, Degree : 103, Score : 0.00250285519889194
-0240, Degree : 103, Score : 0.00250285519889194
-0307, Degree : 103, Score : 0.00250285519889194
-0313, Degree : 102, Score : 0.002478555633854154
-0430, Degree : 102, Score : 0.002478555633854154
-0369, Degree : 101, Score : 0.002454256068816368
-0272, Degree : 100, Score : 0.0024299565037785823
-0179, Degree : 99, Score : 0.0024056569387407964
-0319, Degree : 99, Score : 0.0024056569387407964
-0364, Degree : 99, Score : 0.0024056569387407964
-0013, Degree : 98, Score : 0.0023813573737030106
-0294, Degree : 98, Score : 0.0023813573737030106
-0031, Degree : 97, Score : 0.0023570578086652247
-0092, Degree : 97, Score : 0.0023570578086652247
-0167, Degree : 97, Score : 0.0023570578086652247
-0337, Degree : 97, Score : 0.0023570578086652247
-0185, Degree : 96, Score : 0.0023327582436274393
-0265, Degree : 96, Score : 0.0023327582436274393
-0273, Degree : 96, Score : 0.0023327582436274393
-0215, Degree : 95, Score : 0.0023084586785896534
-0262, Degree : 95, Score : 0.0023084586785896534
-0360, Degree : 95, Score : 0.0023084586785896534
-0037, Degree : 94, Score : 0.0022841591135518676
-0147, Degree : 94, Score : 0.0022841591135518676
-0151, Degree : 94, Score : 0.0022841591135518676
-0285, Degree : 94, Score : 0.0022841591135518676
-0411, Degree : 94, Score : 0.0022841591135518676
-0454, Degree : 94, Score : 0.0022841591135518676
-0500, Degree : 94, Score : 0.0022841591135518676
-0526, Degree : 94, Score : 0.0022841591135518676
-0018, Degree : 93, Score : 0.0022598595485140817
-0109, Degree : 93, Score : 0.0022598595485140817
-0467, Degree : 93, Score : 0.0022598595485140817
-0003, Degree : 92, Score : 0.002235559983476296
-0140, Degree : 92, Score : 0.002235559983476296
-0503, Degree : 91, Score : 0.00221126041843851
-0404, Degree : 90, Score : 0.002186960853400724
-0434, Degree : 90, Score : 0.002186960853400724
-0502, Degree : 90, Score : 0.002186960853400724
-0040, Degree : 89, Score : 0.0021626612883629383
-0060, Degree : 89, Score : 0.0021626612883629383
-0182, Degree : 89, Score : 0.0021626612883629383
-0190, Degree : 89, Score : 0.0021626612883629383
-0295, Degree : 89, Score : 0.0021626612883629383
-0131, Degree : 88, Score : 0.0021383617233251525
-0206, Degree : 88, Score : 0.0021383617233251525
-0342, Degree : 88, Score : 0.0021383617233251525
-0116, Degree : 87, Score : 0.0021140621582873666
-0269, Degree : 87, Score : 0.0021140621582873666
-0397, Degree : 87, Score : 0.0021140621582873666
-0105, Degree : 86, Score : 0.0020897625932495808
-0324, Degree : 85, Score : 0.002065463028211795
-0334, Degree : 85, Score : 0.002065463028211795
-0363, Degree : 85, Score : 0.002065463028211795
-0274, Degree : 84, Score : 0.002041163463174009
-0314, Degree : 84, Score : 0.002041163463174009
-0399, Degree : 84, Score : 0.002041163463174009
-0460, Degree : 84, Score : 0.002041163463174009
-0059, Degree : 83, Score : 0.002016863898136223
-0336, Degree : 83, Score : 0.002016863898136223
-0371, Degree : 83, Score : 0.002016863898136223
-0385, Degree : 83, Score : 0.002016863898136223
-0046, Degree : 82, Score : 0.0019925643330984373
-0214, Degree : 82, Score : 0.0019925643330984373
-0283, Degree : 82, Score : 0.0019925643330984373
-0039, Degree : 81, Score : 0.001968264768060652
-0044, Degree : 81, Score : 0.001968264768060652
-0339, Degree : 81, Score : 0.001968264768060652
-0383, Degree : 81, Score : 0.001968264768060652
-0387, Degree : 81, Score : 0.001968264768060652
-0398, Degree : 81, Score : 0.001968264768060652
-0067, Degree : 80, Score : 0.0019439652030228659
-0165, Degree : 80, Score : 0.0019439652030228659
-0217, Degree : 80, Score : 0.0019439652030228659
-0218, Degree : 80, Score : 0.0019439652030228659
-0361, Degree : 80, Score : 0.0019439652030228659
-0499, Degree : 80, Score : 0.0019439652030228659
-0175, Degree : 79, Score : 0.00191966563798508
-0317, Degree : 78, Score : 0.0018953660729472941
-0322, Degree : 78, Score : 0.0018953660729472941
-0335, Degree : 78, Score : 0.0018953660729472941
-0455, Degree : 78, Score : 0.0018953660729472941
-0529, Degree : 78, Score : 0.0018953660729472941
-0034, Degree : 77, Score : 0.0018710665079095085
-0115, Degree : 77, Score : 0.0018710665079095085
-0124, Degree : 77, Score : 0.0018710665079095085
-0284, Degree : 77, Score : 0.0018710665079095085
-0401, Degree : 77, Score : 0.0018710665079095085
-0058, Degree : 76, Score : 0.0018467669428717227
-0375, Degree : 76, Score : 0.0018467669428717227
-0426, Degree : 76, Score : 0.0018467669428717227
-0005, Degree : 75, Score : 0.0018224673778339368
-0041, Degree : 75, Score : 0.0018224673778339368
-0172, Degree : 75, Score : 0.0018224673778339368
-0186, Degree : 75, Score : 0.0018224673778339368
-0216, Degree : 75, Score : 0.0018224673778339368
-0311, Degree : 75, Score : 0.0018224673778339368
-0316, Degree : 75, Score : 0.0018224673778339368
-0318, Degree : 75, Score : 0.0018224673778339368
-0341, Degree : 75, Score : 0.0018224673778339368
-0370, Degree : 75, Score : 0.0018224673778339368
-0420, Degree : 75, Score : 0.0018224673778339368
-0033, Degree : 74, Score : 0.001798167812796151
-0056, Degree : 74, Score : 0.001798167812796151
-0333, Degree : 74, Score : 0.001798167812796151
-0004, Degree : 73, Score : 0.001773868247758365
-0016, Degree : 73, Score : 0.001773868247758365
-0078, Degree : 73, Score : 0.001773868247758365
-0244, Degree : 73, Score : 0.001773868247758365
-0023, Degree : 72, Score : 0.0017495686827205792
-0019, Degree : 71, Score : 0.0017252691176827934
-0032, Degree : 71, Score : 0.0017252691176827934
-0114, Degree : 71, Score : 0.0017252691176827934
-0118, Degree : 71, Score : 0.0017252691176827934
-0189, Degree : 71, Score : 0.0017252691176827934
-0245, Degree : 71, Score : 0.0017252691176827934
-0400, Degree : 71, Score : 0.0017252691176827934
-0070, Degree : 70, Score : 0.0017009695526450078
-0155, Degree : 70, Score : 0.0017009695526450078
-0345, Degree : 70, Score : 0.0017009695526450078
-0374, Degree : 70, Score : 0.0017009695526450078
-0528, Degree : 70, Score : 0.0017009695526450078
-0026, Degree : 69, Score : 0.001676669987607222
-0042, Degree : 69, Score : 0.001676669987607222
-0120, Degree : 69, Score : 0.001676669987607222
-0126, Degree : 69, Score : 0.001676669987607222
-0139, Degree : 69, Score : 0.001676669987607222
-0184, Degree : 69, Score : 0.001676669987607222
-0367, Degree : 69, Score : 0.001676669987607222
-0006, Degree : 68, Score : 0.001652370422569436
-0357, Degree : 68, Score : 0.001652370422569436
-0522, Degree : 68, Score : 0.001652370422569436
-0047, Degree : 67, Score : 0.0016280708575316502
-0154, Degree : 67, Score : 0.0016280708575316502
-0308, Degree : 67, Score : 0.0016280708575316502
-0352, Degree : 67, Score : 0.0016280708575316502
-0429, Degree : 67, Score : 0.0016280708575316502
-0523, Degree : 67, Score : 0.0016280708575316502
-0501, Degree : 66, Score : 0.0016037712924938643
-0527, Degree : 66, Score : 0.0016037712924938643
-0052, Degree : 65, Score : 0.0015794717274560785
-0083, Degree : 65, Score : 0.0015794717274560785
-0090, Degree : 65, Score : 0.0015794717274560785
-0028, Degree : 64, Score : 0.0015551721624182926
-0029, Degree : 64, Score : 0.0015551721624182926
-0048, Degree : 64, Score : 0.0015551721624182926
-0055, Degree : 64, Score : 0.0015551721624182926
-0137, Degree : 64, Score : 0.0015551721624182926
-0219, Degree : 64, Score : 0.0015551721624182926
-0323, Degree : 64, Score : 0.0015551721624182926
-0359, Degree : 64, Score : 0.0015551721624182926
-0057, Degree : 63, Score : 0.0015308725973805068
-0208, Degree : 63, Score : 0.0015308725973805068
-0427, Degree : 63, Score : 0.0015308725973805068
-0498, Degree : 63, Score : 0.0015308725973805068
-0027, Degree : 62, Score : 0.0015065730323427211
-0076, Degree : 62, Score : 0.0015065730323427211
-0121, Degree : 62, Score : 0.0015065730323427211
-0212, Degree : 62, Score : 0.0015065730323427211
-0343, Degree : 62, Score : 0.0015065730323427211
-0054, Degree : 61, Score : 0.0014822734673049353
-0112, Degree : 61, Score : 0.0014822734673049353
-0030, Degree : 60, Score : 0.0014579739022671494
-0043, Degree : 60, Score : 0.0014579739022671494
-0051, Degree : 60, Score : 0.0014579739022671494
-0372, Degree : 60, Score : 0.0014579739022671494
-0390, Degree : 60, Score : 0.0014579739022671494
-0441, Degree : 60, Score : 0.0014579739022671494
-0053, Degree : 59, Score : 0.0014336743372293636
-0183, Degree : 59, Score : 0.0014336743372293636
-0281, Degree : 59, Score : 0.0014336743372293636
-0348, Degree : 59, Score : 0.0014336743372293636
-0424, Degree : 59, Score : 0.0014336743372293636
-0141, Degree : 58, Score : 0.0014093747721915777
-0349, Degree : 58, Score : 0.0014093747721915777
-0007, Degree : 57, Score : 0.0013850752071537919
-0176, Degree : 57, Score : 0.0013850752071537919
-0077, Degree : 56, Score : 0.001360775642116006
-0180, Degree : 56, Score : 0.001360775642116006
-0243, Degree : 56, Score : 0.001360775642116006
-0321, Degree : 56, Score : 0.001360775642116006
-0351, Degree : 56, Score : 0.001360775642116006
-0421, Degree : 56, Score : 0.001360775642116006
-0504, Degree : 56, Score : 0.001360775642116006
-0209, Degree : 55, Score : 0.0013364760770782204
-0347, Degree : 55, Score : 0.0013364760770782204
-0350, Degree : 55, Score : 0.0013364760770782204
-0038, Degree : 54, Score : 0.0013121765120404345
-0138, Degree : 54, Score : 0.0013121765120404345
-0143, Degree : 54, Score : 0.0013121765120404345
-0197, Degree : 54, Score : 0.0013121765120404345
-0198, Degree : 54, Score : 0.0013121765120404345
-0226, Degree : 54, Score : 0.0013121765120404345
-0227, Degree : 54, Score : 0.0013121765120404345
-0276, Degree : 54, Score : 0.0013121765120404345
-0389, Degree : 54, Score : 0.0013121765120404345
-0392, Degree : 54, Score : 0.0013121765120404345
-0024, Degree : 53, Score : 0.0012878769470026487
-0194, Degree : 53, Score : 0.0012878769470026487
-0211, Degree : 53, Score : 0.0012878769470026487
-0072, Degree : 52, Score : 0.0012635773819648628
-0111, Degree : 52, Score : 0.0012635773819648628
-0403, Degree : 52, Score : 0.0012635773819648628
-0142, Degree : 51, Score : 0.001239277816927077
-0223, Degree : 51, Score : 0.001239277816927077
-0278, Degree : 51, Score : 0.001239277816927077
-0435, Degree : 51, Score : 0.001239277816927077
-0532, Degree : 51, Score : 0.001239277816927077
-0008, Degree : 50, Score : 0.0012149782518892911
-0166, Degree : 50, Score : 0.0012149782518892911
-0378, Degree : 50, Score : 0.0012149782518892911
-0373, Degree : 49, Score : 0.0011906786868515053
-0036, Degree : 48, Score : 0.0011663791218137196
-0157, Degree : 48, Score : 0.0011663791218137196
-0168, Degree : 48, Score : 0.0011663791218137196
-0275, Degree : 48, Score : 0.0011663791218137196
-0277, Degree : 48, Score : 0.0011663791218137196
-0505, Degree : 48, Score : 0.0011663791218137196
-0075, Degree : 47, Score : 0.0011420795567759338
-0079, Degree : 47, Score : 0.0011420795567759338
-0085, Degree : 47, Score : 0.0011420795567759338
-0196, Degree : 47, Score : 0.0011420795567759338
-0213, Degree : 47, Score : 0.0011420795567759338
-0433, Degree : 47, Score : 0.0011420795567759338
-0438, Degree : 47, Score : 0.0011420795567759338
-0017, Degree : 46, Score : 0.001117779991738148
-0188, Degree : 46, Score : 0.001117779991738148
-0191, Degree : 46, Score : 0.001117779991738148
-0346, Degree : 46, Score : 0.001117779991738148
-0406, Degree : 46, Score : 0.001117779991738148
-0513, Degree : 46, Score : 0.001117779991738148
-0177, Degree : 45, Score : 0.001093480426700362
-0439, Degree : 45, Score : 0.001093480426700362
-0453, Degree : 45, Score : 0.001093480426700362
-0506, Degree : 45, Score : 0.001093480426700362
-0021, Degree : 43, Score : 0.0010448812966247904
-0062, Degree : 43, Score : 0.0010448812966247904
-0089, Degree : 43, Score : 0.0010448812966247904
-0326, Degree : 43, Score : 0.0010448812966247904
-0413, Degree : 43, Score : 0.0010448812966247904
-0440, Degree : 43, Score : 0.0010448812966247904
-0514, Degree : 43, Score : 0.0010448812966247904
-0084, Degree : 42, Score : 0.0010205817315870045
-0310, Degree : 42, Score : 0.0010205817315870045
-0402, Degree : 42, Score : 0.0010205817315870045
-0431, Degree : 42, Score : 0.0010205817315870045
-0509, Degree : 42, Score : 0.0010205817315870045
-0525, Degree : 42, Score : 0.0010205817315870045
-0009, Degree : 41, Score : 9.962821665492187E-4
-0354, Degree : 41, Score : 9.962821665492187E-4
-0492, Degree : 41, Score : 9.962821665492187E-4
-0530, Degree : 41, Score : 9.962821665492187E-4
-0061, Degree : 40, Score : 9.719826015114329E-4
-0088, Degree : 40, Score : 9.719826015114329E-4
-0210, Degree : 40, Score : 9.719826015114329E-4
-0222, Degree : 40, Score : 9.719826015114329E-4
-0408, Degree : 40, Score : 9.719826015114329E-4
-0113, Degree : 39, Score : 9.476830364736471E-4
-0145, Degree : 39, Score : 9.476830364736471E-4
-0201, Degree : 39, Score : 9.476830364736471E-4
-0344, Degree : 39, Score : 9.476830364736471E-4
-0449, Degree : 39, Score : 9.476830364736471E-4
-0181, Degree : 38, Score : 9.233834714358613E-4
-0193, Degree : 38, Score : 9.233834714358613E-4
-0279, Degree : 38, Score : 9.233834714358613E-4
-0282, Degree : 38, Score : 9.233834714358613E-4
-0391, Degree : 38, Score : 9.233834714358613E-4
-0396, Degree : 38, Score : 9.233834714358613E-4
-0063, Degree : 37, Score : 8.990839063980755E-4
-0081, Degree : 37, Score : 8.990839063980755E-4
-0436, Degree : 37, Score : 8.990839063980755E-4
-0534, Degree : 37, Score : 8.990839063980755E-4
-0536, Degree : 37, Score : 8.990839063980755E-4
-0199, Degree : 36, Score : 8.747843413602896E-4
-0221, Degree : 36, Score : 8.747843413602896E-4
-0129, Degree : 35, Score : 8.504847763225039E-4
-0195, Degree : 35, Score : 8.504847763225039E-4
-0482, Degree : 35, Score : 8.504847763225039E-4
-0515, Degree : 35, Score : 8.504847763225039E-4
-0537, Degree : 35, Score : 8.504847763225039E-4
-0068, Degree : 34, Score : 8.26185211284718E-4
-0231, Degree : 34, Score : 8.26185211284718E-4
-0379, Degree : 34, Score : 8.26185211284718E-4
-0510, Degree : 34, Score : 8.26185211284718E-4
-0516, Degree : 34, Score : 8.26185211284718E-4
-0064, Degree : 33, Score : 8.018856462469322E-4
-0158, Degree : 33, Score : 8.018856462469322E-4
-0161, Degree : 33, Score : 8.018856462469322E-4
-0405, Degree : 33, Score : 8.018856462469322E-4
-0459, Degree : 33, Score : 8.018856462469322E-4
-0486, Degree : 33, Score : 8.018856462469322E-4
-0508, Degree : 33, Score : 8.018856462469322E-4
-0443, Degree : 32, Score : 7.775860812091463E-4
-0543, Degree : 32, Score : 7.775860812091463E-4
-0200, Degree : 31, Score : 7.532865161713606E-4
-0280, Degree : 31, Score : 7.532865161713606E-4
-0471, Degree : 31, Score : 7.532865161713606E-4
-0483, Degree : 31, Score : 7.532865161713606E-4
-0531, Degree : 31, Score : 7.532865161713606E-4
-0187, Degree : 30, Score : 7.289869511335747E-4
-0228, Degree : 30, Score : 7.289869511335747E-4
-0393, Degree : 30, Score : 7.289869511335747E-4
-0325, Degree : 29, Score : 7.046873860957889E-4
-0409, Degree : 29, Score : 7.046873860957889E-4
-0491, Degree : 29, Score : 7.046873860957889E-4
-0065, Degree : 28, Score : 6.80387821058003E-4
-0074, Degree : 28, Score : 6.80387821058003E-4
-0220, Degree : 28, Score : 6.80387821058003E-4
-0250, Degree : 28, Score : 6.80387821058003E-4
-0286, Degree : 28, Score : 6.80387821058003E-4
-0309, Degree : 28, Score : 6.80387821058003E-4
-0465, Degree : 28, Score : 6.80387821058003E-4
-0472, Degree : 28, Score : 6.80387821058003E-4
-0484, Degree : 28, Score : 6.80387821058003E-4
-0533, Degree : 28, Score : 6.80387821058003E-4
-0412, Degree : 27, Score : 6.560882560202173E-4
-0437, Degree : 27, Score : 6.560882560202173E-4
-0462, Degree : 27, Score : 6.560882560202173E-4
-0485, Degree : 27, Score : 6.560882560202173E-4
-0488, Degree : 27, Score : 6.560882560202173E-4
-0082, Degree : 26, Score : 6.317886909824314E-4
-0144, Degree : 26, Score : 6.317886909824314E-4
-0203, Degree : 26, Score : 6.317886909824314E-4
-0249, Degree : 26, Score : 6.317886909824314E-4
-0394, Degree : 26, Score : 6.317886909824314E-4
-0458, Degree : 26, Score : 6.317886909824314E-4
-0476, Degree : 26, Score : 6.317886909824314E-4
-0511, Degree : 26, Score : 6.317886909824314E-4
-0538, Degree : 26, Score : 6.317886909824314E-4
-0010, Degree : 25, Score : 6.074891259446456E-4
-0159, Degree : 25, Score : 6.074891259446456E-4
-0445, Degree : 25, Score : 6.074891259446456E-4
-0512, Degree : 25, Score : 6.074891259446456E-4
-0229, Degree : 24, Score : 5.831895609068598E-4
-0246, Degree : 24, Score : 5.831895609068598E-4
-0266, Degree : 24, Score : 5.831895609068598E-4
-0477, Degree : 24, Score : 5.831895609068598E-4
-0507, Degree : 24, Score : 5.831895609068598E-4
-0540, Degree : 24, Score : 5.831895609068598E-4
-0080, Degree : 23, Score : 5.58889995869074E-4
-0202, Degree : 23, Score : 5.58889995869074E-4
-0247, Degree : 23, Score : 5.58889995869074E-4
-0414, Degree : 23, Score : 5.58889995869074E-4
-0442, Degree : 23, Score : 5.58889995869074E-4
-0457, Degree : 23, Score : 5.58889995869074E-4
-0470, Degree : 23, Score : 5.58889995869074E-4
-0487, Degree : 23, Score : 5.58889995869074E-4
-0224, Degree : 22, Score : 5.345904308312881E-4
-0251, Degree : 22, Score : 5.345904308312881E-4
-0320, Degree : 22, Score : 5.345904308312881E-4
-0474, Degree : 22, Score : 5.345904308312881E-4
-0539, Degree : 22, Score : 5.345904308312881E-4
-0448, Degree : 21, Score : 5.102908657935023E-4
-0489, Degree : 21, Score : 5.102908657935023E-4
-0541, Degree : 21, Score : 5.102908657935023E-4
-0162, Degree : 20, Score : 4.8599130075571646E-4
-0287, Degree : 20, Score : 4.8599130075571646E-4
-0395, Degree : 20, Score : 4.8599130075571646E-4
-0468, Degree : 20, Score : 4.8599130075571646E-4
-0480, Degree : 20, Score : 4.8599130075571646E-4
-0481, Degree : 20, Score : 4.8599130075571646E-4
-0388, Degree : 19, Score : 4.6169173571793066E-4
-0407, Degree : 19, Score : 4.6169173571793066E-4
-0444, Degree : 19, Score : 4.6169173571793066E-4
-0451, Degree : 19, Score : 4.6169173571793066E-4
-0542, Degree : 19, Score : 4.6169173571793066E-4
-0130, Degree : 18, Score : 4.373921706801448E-4
-0417, Degree : 18, Score : 4.373921706801448E-4
-0466, Degree : 18, Score : 4.373921706801448E-4
-0069, Degree : 17, Score : 4.13092605642359E-4
-0464, Degree : 17, Score : 4.13092605642359E-4
-0478, Degree : 17, Score : 4.13092605642359E-4
-0535, Degree : 17, Score : 4.13092605642359E-4
-0020, Degree : 16, Score : 3.8879304060457316E-4
-0446, Degree : 16, Score : 3.8879304060457316E-4
-0066, Degree : 15, Score : 3.6449347556678736E-4
-0479, Degree : 15, Score : 3.6449347556678736E-4
-0517, Degree : 15, Score : 3.6449347556678736E-4
-0225, Degree : 14, Score : 3.401939105290015E-4
-0252, Degree : 14, Score : 3.401939105290015E-4
-0463, Degree : 14, Score : 3.401939105290015E-4
-0469, Degree : 14, Score : 3.401939105290015E-4
-0490, Degree : 14, Score : 3.401939105290015E-4
-0022, Degree : 13, Score : 3.158943454912157E-4
-0473, Degree : 13, Score : 3.158943454912157E-4
-0163, Degree : 12, Score : 2.915947804534299E-4
-0415, Degree : 11, Score : 2.6729521541564406E-4
-0248, Degree : 10, Score : 2.4299565037785823E-4
-0475, Degree : 10, Score : 2.4299565037785823E-4
-0169, Degree : 9, Score : 2.186960853400724E-4
-0416, Degree : 9, Score : 2.186960853400724E-4
-0497, Degree : 8, Score : 1.9439652030228658E-4
-0170, Degree : 7, Score : 1.7009695526450075E-4
-0171, Degree : 7, Score : 1.7009695526450075E-4
-0232, Degree : 7, Score : 1.7009695526450075E-4
-0235, Degree : 7, Score : 1.7009695526450075E-4
-0447, Degree : 7, Score : 1.7009695526450075E-4
-0493, Degree : 7, Score : 1.7009695526450075E-4
-0494, Degree : 7, Score : 1.7009695526450075E-4
-0091, Degree : 6, Score : 1.4579739022671496E-4
-0461, Degree : 6, Score : 1.4579739022671496E-4
-0495, Degree : 6, Score : 1.4579739022671496E-4
-0025, Degree : 5, Score : 1.2149782518892912E-4
-0234, Degree : 4, Score : 9.719826015114329E-5
-0410, Degree : 4, Score : 9.719826015114329E-5
-0127, Degree : 3, Score : 7.289869511335748E-5
-0233, Degree : 3, Score : 7.289869511335748E-5
-0328, Degree : 3, Score : 7.289869511335748E-5
-0496, Degree : 3, Score : 7.289869511335748E-5
-0253, Degree : 2, Score : 4.8599130075571645E-5
-0254, Degree : 2, Score : 4.8599130075571645E-5
-0327, Degree : 2, Score : 4.8599130075571645E-5
-0450, Degree : 2, Score : 4.8599130075571645E-5
-0518, Degree : 2, Score : 4.8599130075571645E-5
-0519, Degree : 1, Score : 2.4299565037785822E-5
+0291, Degree : 382, Weighted Degree : 594774
+0204, Degree : 297, Weighted Degree : 465102
+0236, Degree : 273, Weighted Degree : 220038
+0332, Degree : 253, Weighted Degree : 143451
+0049, Degree : 261, Weighted Degree : 135981
+0382, Degree : 302, Weighted Degree : 127142
+0135, Degree : 325, Weighted Degree : 117325
+0205, Degree : 230, Weighted Degree : 113620
+0422, Degree : 173, Weighted Degree : 105011
+0173, Degree : 232, Weighted Degree : 103704
+0304, Degree : 248, Weighted Degree : 96720
+0071, Degree : 287, Weighted Degree : 95284
+0289, Degree : 196, Weighted Degree : 94276
+0368, Degree : 190, Weighted Degree : 90250
+0302, Degree : 237, Weighted Degree : 89586
+0452, Degree : 144, Weighted Degree : 88992
+0297, Degree : 236, Weighted Degree : 88736
+0329, Degree : 178, Weighted Degree : 86330
+0299, Degree : 240, Weighted Degree : 85680
+0330, Degree : 174, Weighted Degree : 84738
+0256, Degree : 191, Weighted Degree : 82894
+0306, Degree : 235, Weighted Degree : 81310
+0376, Degree : 196, Weighted Degree : 79772
+0288, Degree : 152, Weighted Degree : 79344
+0133, Degree : 195, Weighted Degree : 77610
+0356, Degree : 158, Weighted Degree : 75998
+0237, Degree : 231, Weighted Degree : 75768
+0290, Degree : 175, Weighted Degree : 73675
+0384, Degree : 176, Weighted Degree : 72688
+0331, Degree : 169, Weighted Degree : 72163
+0353, Degree : 178, Weighted Degree : 68708
+0423, Degree : 142, Weighted Degree : 67024
+0011, Degree : 217, Weighted Degree : 65751
+0355, Degree : 142, Weighted Degree : 59356
+0207, Degree : 165, Weighted Degree : 57090
+0156, Degree : 224, Weighted Degree : 56000
+0521, Degree : 205, Weighted Degree : 55965
+0419, Degree : 177, Weighted Degree : 55932
+0050, Degree : 193, Weighted Degree : 53268
+0164, Degree : 213, Weighted Degree : 51759
+0001, Degree : 177, Weighted Degree : 49560
+0119, Degree : 136, Weighted Degree : 47192
+0524, Degree : 140, Weighted Degree : 47180
+0238, Degree : 182, Weighted Degree : 46592
+0174, Degree : 171, Weighted Degree : 45315
+0456, Degree : 211, Weighted Degree : 42833
+0258, Degree : 163, Weighted Degree : 35697
+0418, Degree : 143, Weighted Degree : 35035
+0381, Degree : 158, Weighted Degree : 33180
+0241, Degree : 145, Weighted Degree : 32625
+0260, Degree : 159, Weighted Degree : 31959
+0259, Degree : 146, Weighted Degree : 31536
+0500, Degree : 94, Weighted Degree : 31020
+0178, Degree : 147, Weighted Degree : 30429
+0123, Degree : 107, Weighted Degree : 30174
+0255, Degree : 132, Weighted Degree : 29304
+0292, Degree : 159, Weighted Degree : 29256
+0242, Degree : 142, Weighted Degree : 29110
+0499, Degree : 80, Weighted Degree : 28880
+0503, Degree : 91, Weighted Degree : 28483
+0502, Degree : 90, Weighted Degree : 28170
+0261, Degree : 148, Weighted Degree : 27824
+0340, Degree : 151, Weighted Degree : 27784
+0230, Degree : 130, Weighted Degree : 27430
+0257, Degree : 121, Weighted Degree : 26378
+0035, Degree : 142, Weighted Degree : 24850
+0432, Degree : 141, Weighted Degree : 24252
+0122, Degree : 143, Weighted Degree : 23738
+0172, Degree : 75, Weighted Degree : 22275
+0045, Degree : 132, Weighted Degree : 21912
+0239, Degree : 114, Weighted Degree : 21888
+0380, Degree : 136, Weighted Degree : 21624
+0434, Degree : 90, Weighted Degree : 21240
+0377, Degree : 163, Weighted Degree : 20864
+0097, Degree : 130, Weighted Degree : 20800
+0366, Degree : 126, Weighted Degree : 20538
+0365, Degree : 124, Weighted Degree : 19716
+0362, Degree : 123, Weighted Degree : 19434
+0073, Degree : 145, Weighted Degree : 19285
+0095, Degree : 124, Weighted Degree : 18724
+0103, Degree : 147, Weighted Degree : 18669
+0101, Degree : 147, Weighted Degree : 18375
+0421, Degree : 56, Weighted Degree : 18256
+0117, Degree : 120, Weighted Degree : 18240
+0098, Degree : 114, Weighted Degree : 17328
+0270, Degree : 138, Weighted Degree : 17250
+0093, Degree : 112, Weighted Degree : 17024
+0307, Degree : 103, Weighted Degree : 16480
+0094, Degree : 107, Weighted Degree : 16157
+0303, Degree : 129, Weighted Degree : 15867
+0104, Degree : 132, Weighted Degree : 15840
+0096, Degree : 106, Weighted Degree : 15794
+0305, Degree : 133, Weighted Degree : 15561
+0386, Degree : 136, Weighted Degree : 15368
+0425, Degree : 108, Weighted Degree : 15228
+0498, Degree : 63, Weighted Degree : 15183
+0092, Degree : 97, Weighted Degree : 15132
+0271, Degree : 129, Weighted Degree : 15093
+0301, Degree : 116, Weighted Degree : 14848
+0192, Degree : 103, Weighted Degree : 14729
+0268, Degree : 113, Weighted Degree : 14690
+0454, Degree : 94, Weighted Degree : 14664
+0501, Degree : 66, Weighted Degree : 14652
+0128, Degree : 116, Weighted Degree : 14616
+0108, Degree : 125, Weighted Degree : 14500
+0012, Degree : 108, Weighted Degree : 14472
+0110, Degree : 129, Weighted Degree : 14319
+0136, Degree : 159, Weighted Degree : 14310
+0520, Degree : 121, Weighted Degree : 14157
+0134, Degree : 116, Weighted Degree : 14152
+0102, Degree : 131, Weighted Degree : 14148
+0186, Degree : 75, Weighted Degree : 14100
+0300, Degree : 111, Weighted Degree : 13875
+0132, Degree : 136, Weighted Degree : 13736
+0358, Degree : 110, Weighted Degree : 13530
+0185, Degree : 96, Weighted Degree : 13440
+0315, Degree : 107, Weighted Degree : 13268
+0106, Degree : 127, Weighted Degree : 13208
+0100, Degree : 122, Weighted Degree : 13176
+0298, Degree : 108, Weighted Degree : 13176
+0428, Degree : 108, Weighted Degree : 13176
+0293, Degree : 115, Weighted Degree : 12995
+0430, Degree : 102, Weighted Degree : 12852
+0263, Degree : 113, Weighted Degree : 11978
+0267, Degree : 114, Weighted Degree : 11970
+0526, Degree : 94, Weighted Degree : 11938
+0107, Degree : 110, Weighted Degree : 11880
+0264, Degree : 111, Weighted Degree : 11877
+0087, Degree : 136, Weighted Degree : 11832
+0385, Degree : 83, Weighted Degree : 11703
+0369, Degree : 101, Weighted Degree : 11615
+0312, Degree : 109, Weighted Degree : 11445
+0240, Degree : 103, Weighted Degree : 11433
+0313, Degree : 102, Weighted Degree : 11424
+0002, Degree : 114, Weighted Degree : 11400
+0149, Degree : 134, Weighted Degree : 11390
+0099, Degree : 105, Weighted Degree : 11130
+0404, Degree : 90, Weighted Degree : 11070
+0015, Degree : 128, Weighted Degree : 11008
+0319, Degree : 99, Weighted Degree : 10791
+0296, Degree : 107, Weighted Degree : 10700
+0360, Degree : 95, Weighted Degree : 10450
+0411, Degree : 94, Weighted Degree : 10434
+0046, Degree : 82, Weighted Degree : 10168
+0399, Degree : 84, Weighted Degree : 9996
+0125, Degree : 115, Weighted Degree : 9890
+0086, Degree : 117, Weighted Degree : 9711
+0426, Degree : 76, Weighted Degree : 9652
+0387, Degree : 81, Weighted Degree : 9639
+0014, Degree : 110, Weighted Degree : 9350
+0160, Degree : 114, Weighted Degree : 9348
+0398, Degree : 81, Weighted Degree : 9315
+0148, Degree : 123, Weighted Degree : 9225
+0124, Degree : 77, Weighted Degree : 9163
+0338, Degree : 110, Weighted Degree : 9020
+0401, Degree : 77, Weighted Degree : 8855
+0150, Degree : 112, Weighted Degree : 8848
+0294, Degree : 98, Weighted Degree : 8820
+0529, Degree : 78, Weighted Degree : 8814
+0383, Degree : 81, Weighted Degree : 8748
+0031, Degree : 97, Weighted Degree : 8730
+0013, Degree : 98, Weighted Degree : 8624
+0467, Degree : 93, Weighted Degree : 8556
+0146, Degree : 112, Weighted Degree : 8512
+0427, Degree : 63, Weighted Degree : 8505
+0179, Degree : 99, Weighted Degree : 8415
+0285, Degree : 94, Weighted Degree : 8366
+0265, Degree : 96, Weighted Degree : 8352
+0262, Degree : 95, Weighted Degree : 8265
+0273, Degree : 96, Weighted Degree : 8256
+0182, Degree : 89, Weighted Degree : 8099
+0364, Degree : 99, Weighted Degree : 8019
+0272, Degree : 100, Weighted Degree : 8000
+0400, Degree : 71, Weighted Degree : 7952
+0214, Degree : 82, Weighted Degree : 7872
+0056, Degree : 74, Weighted Degree : 7844
+0295, Degree : 89, Weighted Degree : 7832
+0039, Degree : 81, Weighted Degree : 7695
+0037, Degree : 94, Weighted Degree : 7614
+0269, Degree : 87, Weighted Degree : 7569
+0153, Degree : 103, Weighted Degree : 7519
+0504, Degree : 56, Weighted Degree : 7448
+0314, Degree : 84, Weighted Degree : 7308
+0337, Degree : 97, Weighted Degree : 7275
+0324, Degree : 85, Weighted Degree : 7225
+0018, Degree : 93, Weighted Degree : 7161
+0190, Degree : 89, Weighted Degree : 7031
+0528, Degree : 70, Weighted Degree : 7000
+0215, Degree : 95, Weighted Degree : 6935
+0283, Degree : 82, Weighted Degree : 6806
+0363, Degree : 85, Weighted Degree : 6715
+0527, Degree : 66, Weighted Degree : 6666
+0140, Degree : 92, Weighted Degree : 6624
+0217, Degree : 80, Weighted Degree : 6560
+0274, Degree : 84, Weighted Degree : 6468
+0244, Degree : 73, Weighted Degree : 6351
+0131, Degree : 88, Weighted Degree : 6336
+0152, Degree : 105, Weighted Degree : 6300
+0116, Degree : 87, Weighted Degree : 6264
+0397, Degree : 87, Weighted Degree : 6090
+0109, Degree : 93, Weighted Degree : 6045
+0371, Degree : 83, Weighted Degree : 5976
+0218, Degree : 80, Weighted Degree : 5920
+0003, Degree : 92, Weighted Degree : 5888
+0455, Degree : 78, Weighted Degree : 5850
+0342, Degree : 88, Weighted Degree : 5808
+0167, Degree : 97, Weighted Degree : 5723
+0284, Degree : 77, Weighted Degree : 5698
+0334, Degree : 85, Weighted Degree : 5610
+0115, Degree : 77, Weighted Degree : 5544
+0184, Degree : 69, Weighted Degree : 5520
+0060, Degree : 89, Weighted Degree : 5518
+0336, Degree : 83, Weighted Degree : 5478
+0005, Degree : 75, Weighted Degree : 5475
+0206, Degree : 88, Weighted Degree : 5456
+0067, Degree : 80, Weighted Degree : 5440
+0523, Degree : 67, Weighted Degree : 5427
+0216, Degree : 75, Weighted Degree : 5400
+0004, Degree : 73, Weighted Degree : 5329
+0245, Degree : 71, Weighted Degree : 5325
+0114, Degree : 71, Weighted Degree : 5254
+0420, Degree : 75, Weighted Degree : 5175
+0105, Degree : 86, Weighted Degree : 5074
+0522, Degree : 68, Weighted Degree : 5032
+0339, Degree : 81, Weighted Degree : 5022
+0317, Degree : 78, Weighted Degree : 4992
+0040, Degree : 89, Weighted Degree : 4984
+0402, Degree : 42, Weighted Degree : 4956
+0044, Degree : 81, Weighted Degree : 4941
+0335, Degree : 78, Weighted Degree : 4914
+0361, Degree : 80, Weighted Degree : 4880
+0370, Degree : 75, Weighted Degree : 4875
+0034, Degree : 77, Weighted Degree : 4851
+0506, Degree : 45, Weighted Degree : 4815
+0059, Degree : 83, Weighted Degree : 4814
+0147, Degree : 94, Weighted Degree : 4794
+0208, Degree : 63, Weighted Degree : 4788
+0120, Degree : 69, Weighted Degree : 4761
+0322, Degree : 78, Weighted Degree : 4758
+0390, Degree : 60, Weighted Degree : 4740
+0058, Degree : 76, Weighted Degree : 4712
+0333, Degree : 74, Weighted Degree : 4662
+0041, Degree : 75, Weighted Degree : 4650
+0311, Degree : 75, Weighted Degree : 4650
+0006, Degree : 68, Weighted Degree : 4624
+0341, Degree : 75, Weighted Degree : 4575
+0165, Degree : 80, Weighted Degree : 4560
+0505, Degree : 48, Weighted Degree : 4560
+0151, Degree : 94, Weighted Degree : 4512
+0367, Degree : 69, Weighted Degree : 4416
+0121, Degree : 62, Weighted Degree : 4402
+0374, Degree : 70, Weighted Degree : 4340
+0026, Degree : 69, Weighted Degree : 4209
+0042, Degree : 69, Weighted Degree : 4209
+0118, Degree : 71, Weighted Degree : 4189
+0375, Degree : 76, Weighted Degree : 4180
+0352, Degree : 67, Weighted Degree : 4154
+0357, Degree : 68, Weighted Degree : 4148
+0441, Degree : 60, Weighted Degree : 4140
+0318, Degree : 75, Weighted Degree : 4125
+0219, Degree : 64, Weighted Degree : 4096
+0033, Degree : 74, Weighted Degree : 4070
+0032, Degree : 71, Weighted Degree : 4047
+0176, Degree : 57, Weighted Degree : 4047
+0126, Degree : 69, Weighted Degree : 4002
+0016, Degree : 73, Weighted Degree : 3942
+0028, Degree : 64, Weighted Degree : 3904
+0083, Degree : 65, Weighted Degree : 3900
+0047, Degree : 67, Weighted Degree : 3886
+0019, Degree : 71, Weighted Degree : 3834
+0007, Degree : 57, Weighted Degree : 3819
+0154, Degree : 67, Weighted Degree : 3819
+0175, Degree : 79, Weighted Degree : 3792
+0043, Degree : 60, Weighted Degree : 3780
+0188, Degree : 46, Weighted Degree : 3772
+0189, Degree : 71, Weighted Degree : 3763
+0316, Degree : 75, Weighted Degree : 3750
+0027, Degree : 62, Weighted Degree : 3720
+0212, Degree : 62, Weighted Degree : 3720
+0372, Degree : 60, Weighted Degree : 3720
+0177, Degree : 45, Weighted Degree : 3690
+0389, Degree : 54, Weighted Degree : 3672
+0030, Degree : 60, Weighted Degree : 3660
+0057, Degree : 63, Weighted Degree : 3654
+0429, Degree : 67, Weighted Degree : 3618
+0359, Degree : 64, Weighted Degree : 3584
+0345, Degree : 70, Weighted Degree : 3570
+0537, Degree : 35, Weighted Degree : 3570
+0139, Degree : 69, Weighted Degree : 3519
+0155, Degree : 70, Weighted Degree : 3500
+0048, Degree : 64, Weighted Degree : 3456
+0403, Degree : 52, Weighted Degree : 3432
+0038, Degree : 54, Weighted Degree : 3402
+0276, Degree : 54, Weighted Degree : 3402
+0510, Degree : 34, Weighted Degree : 3400
+0433, Degree : 47, Weighted Degree : 3384
+0435, Degree : 51, Weighted Degree : 3366
+0532, Degree : 51, Weighted Degree : 3366
+0211, Degree : 53, Weighted Degree : 3286
+0243, Degree : 56, Weighted Degree : 3248
+0078, Degree : 73, Weighted Degree : 3212
+0029, Degree : 64, Weighted Degree : 3200
+0323, Degree : 64, Weighted Degree : 3200
+0343, Degree : 62, Weighted Degree : 3162
+0308, Degree : 67, Weighted Degree : 3149
+0180, Degree : 56, Weighted Degree : 3136
+0052, Degree : 65, Weighted Degree : 3055
+0112, Degree : 61, Weighted Degree : 3050
+0351, Degree : 56, Weighted Degree : 3024
+0460, Degree : 84, Weighted Degree : 3024
+0281, Degree : 59, Weighted Degree : 3009
+0525, Degree : 42, Weighted Degree : 2982
+0055, Degree : 64, Weighted Degree : 2944
+0209, Degree : 55, Weighted Degree : 2915
+0483, Degree : 31, Weighted Degree : 2883
+0465, Degree : 28, Weighted Degree : 2856
+0484, Degree : 28, Weighted Degree : 2856
+0054, Degree : 61, Weighted Degree : 2806
+0321, Degree : 56, Weighted Degree : 2800
+0482, Degree : 35, Weighted Degree : 2800
+0424, Degree : 59, Weighted Degree : 2773
+0440, Degree : 43, Weighted Degree : 2752
+0349, Degree : 58, Weighted Degree : 2726
+0051, Degree : 60, Weighted Degree : 2700
+0347, Degree : 55, Weighted Degree : 2695
+0513, Degree : 46, Weighted Degree : 2668
+0053, Degree : 59, Weighted Degree : 2655
+0223, Degree : 51, Weighted Degree : 2652
+0198, Degree : 54, Weighted Degree : 2646
+0514, Degree : 43, Weighted Degree : 2580
+0348, Degree : 59, Weighted Degree : 2537
+0023, Degree : 72, Weighted Degree : 2520
+0213, Degree : 47, Weighted Degree : 2491
+0543, Degree : 32, Weighted Degree : 2432
+0509, Degree : 42, Weighted Degree : 2394
+0194, Degree : 53, Weighted Degree : 2385
+0143, Degree : 54, Weighted Degree : 2376
+0227, Degree : 54, Weighted Degree : 2376
+0373, Degree : 49, Weighted Degree : 2352
+0453, Degree : 45, Weighted Degree : 2340
+0141, Degree : 58, Weighted Degree : 2320
+0346, Degree : 46, Weighted Degree : 2300
+0406, Degree : 46, Weighted Degree : 2300
+0226, Degree : 54, Weighted Degree : 2268
+0008, Degree : 50, Weighted Degree : 2250
+0085, Degree : 47, Weighted Degree : 2209
+0070, Degree : 70, Weighted Degree : 2170
+0090, Degree : 65, Weighted Degree : 2145
+0350, Degree : 55, Weighted Degree : 2145
+0277, Degree : 48, Weighted Degree : 2112
+0142, Degree : 51, Weighted Degree : 2091
+0278, Degree : 51, Weighted Degree : 2091
+0199, Degree : 36, Weighted Degree : 2088
+0061, Degree : 40, Weighted Degree : 2080
+0222, Degree : 40, Weighted Degree : 2080
+0392, Degree : 54, Weighted Degree : 2052
+0062, Degree : 43, Weighted Degree : 2021
+0196, Degree : 47, Weighted Degree : 2021
+0408, Degree : 40, Weighted Degree : 2000
+0137, Degree : 64, Weighted Degree : 1984
+0036, Degree : 48, Weighted Degree : 1968
+0076, Degree : 62, Weighted Degree : 1922
+0077, Degree : 56, Weighted Degree : 1904
+0183, Degree : 59, Weighted Degree : 1888
+0326, Degree : 43, Weighted Degree : 1849
+0508, Degree : 33, Weighted Degree : 1848
+0439, Degree : 45, Weighted Degree : 1845
+0197, Degree : 54, Weighted Degree : 1836
+0275, Degree : 48, Weighted Degree : 1824
+0396, Degree : 38, Weighted Degree : 1824
+0024, Degree : 53, Weighted Degree : 1802
+0191, Degree : 46, Weighted Degree : 1794
+0138, Degree : 54, Weighted Degree : 1782
+0354, Degree : 41, Weighted Degree : 1763
+0486, Degree : 33, Weighted Degree : 1749
+0536, Degree : 37, Weighted Degree : 1739
+0200, Degree : 31, Weighted Degree : 1736
+0009, Degree : 41, Weighted Degree : 1722
+0530, Degree : 41, Weighted Degree : 1722
+0111, Degree : 52, Weighted Degree : 1716
+0438, Degree : 47, Weighted Degree : 1692
+0064, Degree : 33, Weighted Degree : 1650
+0485, Degree : 27, Weighted Degree : 1620
+0079, Degree : 47, Weighted Degree : 1598
+0168, Degree : 48, Weighted Degree : 1584
+0515, Degree : 35, Weighted Degree : 1575
+0468, Degree : 20, Weighted Degree : 1560
+0063, Degree : 37, Weighted Degree : 1554
+0378, Degree : 50, Weighted Degree : 1500
+0166, Degree : 50, Weighted Degree : 1450
+0534, Degree : 37, Weighted Degree : 1443
+0210, Degree : 40, Weighted Degree : 1440
+0113, Degree : 39, Weighted Degree : 1404
+0344, Degree : 39, Weighted Degree : 1404
+0491, Degree : 29, Weighted Degree : 1392
+0017, Degree : 46, Weighted Degree : 1380
+0476, Degree : 26, Weighted Degree : 1378
+0282, Degree : 38, Weighted Degree : 1368
+0466, Degree : 18, Weighted Degree : 1368
+0471, Degree : 31, Weighted Degree : 1333
+0431, Degree : 42, Weighted Degree : 1260
+0181, Degree : 38, Weighted Degree : 1254
+0072, Degree : 52, Weighted Degree : 1248
+0021, Degree : 43, Weighted Degree : 1247
+0413, Degree : 43, Weighted Degree : 1247
+0492, Degree : 41, Weighted Degree : 1230
+0538, Degree : 26, Weighted Degree : 1222
+0531, Degree : 31, Weighted Degree : 1209
+0089, Degree : 43, Weighted Degree : 1161
+0068, Degree : 34, Weighted Degree : 1156
+0405, Degree : 33, Weighted Degree : 1155
+0157, Degree : 48, Weighted Degree : 1152
+0084, Degree : 42, Weighted Degree : 1134
+0129, Degree : 35, Weighted Degree : 1120
+0436, Degree : 37, Weighted Degree : 1110
+0221, Degree : 36, Weighted Degree : 1080
+0250, Degree : 28, Weighted Degree : 1064
+0187, Degree : 30, Weighted Degree : 1050
+0472, Degree : 28, Weighted Degree : 1036
+0075, Degree : 47, Weighted Degree : 1034
+0477, Degree : 24, Weighted Degree : 1032
+0391, Degree : 38, Weighted Degree : 1026
+0393, Degree : 30, Weighted Degree : 1020
+0201, Degree : 39, Weighted Degree : 1014
+0507, Degree : 24, Weighted Degree : 984
+0145, Degree : 39, Weighted Degree : 975
+0310, Degree : 42, Weighted Degree : 966
+0280, Degree : 31, Weighted Degree : 961
+0193, Degree : 38, Weighted Degree : 950
+0449, Degree : 39, Weighted Degree : 936
+0081, Degree : 37, Weighted Degree : 925
+0088, Degree : 40, Weighted Degree : 920
+0231, Degree : 34, Weighted Degree : 918
+0470, Degree : 23, Weighted Degree : 897
+0488, Degree : 27, Weighted Degree : 891
+0379, Degree : 34, Weighted Degree : 884
+0279, Degree : 38, Weighted Degree : 874
+0394, Degree : 26, Weighted Degree : 832
+0516, Degree : 34, Weighted Degree : 816
+0161, Degree : 33, Weighted Degree : 792
+0409, Degree : 29, Weighted Degree : 783
+0480, Degree : 20, Weighted Degree : 780
+0443, Degree : 32, Weighted Degree : 768
+0195, Degree : 35, Weighted Degree : 735
+0065, Degree : 28, Weighted Degree : 728
+0246, Degree : 24, Weighted Degree : 696
+0228, Degree : 30, Weighted Degree : 690
+0512, Degree : 25, Weighted Degree : 675
+0309, Degree : 28, Weighted Degree : 644
+0474, Degree : 22, Weighted Degree : 638
+0459, Degree : 33, Weighted Degree : 627
+0010, Degree : 25, Weighted Degree : 625
+0540, Degree : 24, Weighted Degree : 624
+0487, Degree : 23, Weighted Degree : 598
+0412, Degree : 27, Weighted Degree : 594
+0158, Degree : 33, Weighted Degree : 561
+0202, Degree : 23, Weighted Degree : 529
+0445, Degree : 25, Weighted Degree : 525
+0249, Degree : 26, Weighted Degree : 520
+0437, Degree : 27, Weighted Degree : 513
+0539, Degree : 22, Weighted Degree : 506
+0203, Degree : 26, Weighted Degree : 494
+0511, Degree : 26, Weighted Degree : 494
+0469, Degree : 14, Weighted Degree : 490
+0251, Degree : 22, Weighted Degree : 484
+0462, Degree : 27, Weighted Degree : 459
+0286, Degree : 28, Weighted Degree : 448
+0082, Degree : 26, Weighted Degree : 442
+0442, Degree : 23, Weighted Degree : 437
+0473, Degree : 13, Weighted Degree : 429
+0481, Degree : 20, Weighted Degree : 420
+0414, Degree : 23, Weighted Degree : 414
+0457, Degree : 23, Weighted Degree : 414
+0159, Degree : 25, Weighted Degree : 400
+0287, Degree : 20, Weighted Degree : 400
+0220, Degree : 28, Weighted Degree : 392
+0533, Degree : 28, Weighted Degree : 392
+0247, Degree : 23, Weighted Degree : 391
+0478, Degree : 17, Weighted Degree : 391
+0479, Degree : 15, Weighted Degree : 390
+0130, Degree : 18, Weighted Degree : 360
+0229, Degree : 24, Weighted Degree : 360
+0224, Degree : 22, Weighted Degree : 352
+0325, Degree : 29, Weighted Degree : 348
+0144, Degree : 26, Weighted Degree : 338
+0266, Degree : 24, Weighted Degree : 336
+0489, Degree : 21, Weighted Degree : 336
+0407, Degree : 19, Weighted Degree : 323
+0162, Degree : 20, Weighted Degree : 320
+0066, Degree : 15, Weighted Degree : 315
+0074, Degree : 28, Weighted Degree : 308
+0535, Degree : 17, Weighted Degree : 306
+0444, Degree : 19, Weighted Degree : 304
+0451, Degree : 19, Weighted Degree : 304
+0080, Degree : 23, Weighted Degree : 299
+0320, Degree : 22, Weighted Degree : 286
+0458, Degree : 26, Weighted Degree : 286
+0517, Degree : 15, Weighted Degree : 285
+0475, Degree : 10, Weighted Degree : 270
+0252, Degree : 14, Weighted Degree : 266
+0395, Degree : 20, Weighted Degree : 260
+0020, Degree : 16, Weighted Degree : 256
+0446, Degree : 16, Weighted Degree : 240
+0232, Degree : 7, Weighted Degree : 231
+0448, Degree : 21, Weighted Degree : 231
+0464, Degree : 17, Weighted Degree : 221
+0417, Degree : 18, Weighted Degree : 216
+0490, Degree : 14, Weighted Degree : 210
+0388, Degree : 19, Weighted Degree : 209
+0163, Degree : 12, Weighted Degree : 192
+0225, Degree : 14, Weighted Degree : 182
+0463, Degree : 14, Weighted Degree : 182
+0069, Degree : 17, Weighted Degree : 170
+0235, Degree : 7, Weighted Degree : 168
+0541, Degree : 21, Weighted Degree : 168
+0497, Degree : 8, Weighted Degree : 152
+0542, Degree : 19, Weighted Degree : 152
+0248, Degree : 10, Weighted Degree : 120
+0022, Degree : 13, Weighted Degree : 117
+0494, Degree : 7, Weighted Degree : 112
+0169, Degree : 9, Weighted Degree : 90
+0415, Degree : 11, Weighted Degree : 77
+0493, Degree : 7, Weighted Degree : 70
+0328, Degree : 3, Weighted Degree : 69
+0495, Degree : 6, Weighted Degree : 60
+0170, Degree : 7, Weighted Degree : 56
+0171, Degree : 7, Weighted Degree : 56
+0416, Degree : 9, Weighted Degree : 54
+0091, Degree : 6, Weighted Degree : 42
+0447, Degree : 7, Weighted Degree : 42
+0234, Degree : 4, Weighted Degree : 40
+0253, Degree : 2, Weighted Degree : 32
+0327, Degree : 2, Weighted Degree : 32
+0254, Degree : 2, Weighted Degree : 30
+0233, Degree : 3, Weighted Degree : 27
+0025, Degree : 5, Weighted Degree : 15
+0127, Degree : 3, Weighted Degree : 15
+0496, Degree : 3, Weighted Degree : 15
+0450, Degree : 2, Weighted Degree : 12
+0461, Degree : 6, Weighted Degree : 12
+0519, Degree : 1, Weighted Degree : 12
+0410, Degree : 4, Weighted Degree : 8
+0518, Degree : 2, Weighted Degree : 6

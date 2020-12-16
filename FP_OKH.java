@@ -13,9 +13,12 @@ class FP_OKH {
     static final String EXT_OUT = ".txt";
     static final String ROOT_DIR = "Toronto/";
     static final String OUTPUT_DIR = ROOT_DIR + "output/";
+    static final String SOLUTION_DIR = OUTPUT_DIR + "solution/";
     static final int METHOD_LARGEST_DEGREE_FIRST = 1;
     static final int METHOD_LEAST_REMAINING_COLOR_FIRST = 2;
     static final int METHOD_GREATEST_NUMBER_OF_STUDENTS_FIRST = 3;
+    static final int METHOD_LARGEST_WEIGHTED_DEGREE_FIRST = 4;
+    static final int METHOD_COLORING_NO_SORTING = 5;
     static BufferedReader br;
     static PrintWriter out;
     static Scanner in = new Scanner(System.in);
@@ -23,7 +26,7 @@ class FP_OKH {
                     "pur-s-93", "rye-s-93", "sta-f-83", "tre-s-92", "uta-s-92", "ute-s-92", "yor-f-83"};
     static ArrayList<Pair<ArrayList<Course>, ArrayList<Student>>> cases = new ArrayList();
     static ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> currConflictsMatrix;
-    static ArrayList<Conflict> currCoursesDegree;
+    static ArrayList<Degree> currCoursesDegree;
     //  AraryList<Student> students;
     public static void main(String[] args) throws Exception{
         // read data
@@ -50,13 +53,34 @@ class FP_OKH {
             if(choice >= 1 && choice <= fileNames.length) {
                 //dumpCaseToScreen(choice - 1);
                 generateConflictMatrixFile(choice - 1);  
-                generateCoursesDegreeFile(choice - 1);
-                int minTimeSlotsGraphColoringLeastFirst = Util.getMinTimeslots(currConflictsMatrix, true);
-                int minTimeSlotsGraphColoring = Util.getMinTimeslots(currConflictsMatrix, false);
+                generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_DEGREE);
+                int bestMethod = METHOD_LEAST_REMAINING_COLOR_FIRST;
+                int minTimeSlots = Integer.MAX_VALUE;
+                int minTimeSlotsGraphColoringLeastFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LEAST_REMAINING_COLOR_FIRST);
+                minTimeSlots = minTimeSlotsGraphColoringLeastFirst;
+                int minTimeSlotsGraphColoring = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_COLORING_NO_SORTING);
+                if(minTimeSlots > minTimeSlotsGraphColoring) {
+                    minTimeSlots = minTimeSlotsGraphColoring;
+                    bestMethod = METHOD_COLORING_NO_SORTING;
+                }
                 int minTimeSlotsLargestDegreeFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_DEGREE_FIRST);
+                if(minTimeSlots > minTimeSlotsLargestDegreeFirst) {
+                    minTimeSlots = minTimeSlotsLargestDegreeFirst;
+                    bestMethod = METHOD_LARGEST_DEGREE_FIRST;
+                }
+                // generate degree kembali dengan weighted degree 
+                generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_WEIGHTED_DEGREE);
+                int minTimeSlotsLargestWeigthedDegreeFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_WEIGHTED_DEGREE_FIRST);
+                if(minTimeSlots > minTimeSlotsLargestWeigthedDegreeFirst) {
+                    minTimeSlots = minTimeSlotsLargestWeigthedDegreeFirst;
+                    bestMethod = METHOD_LARGEST_WEIGHTED_DEGREE_FIRST;
+                }
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
                 System.out.println("Min timeslots (Least Remaining Color First) : " + minTimeSlotsGraphColoringLeastFirst);
                 System.out.println("Min timeslots (No Sorting) : " + minTimeSlotsGraphColoring);
                 System.out.println("Min timeslots (Largest Degree First) : " + minTimeSlotsLargestDegreeFirst);
+                System.out.println("Min timeslots (Largest Weighted Degree First) : " + minTimeSlotsLargestWeigthedDegreeFirst);
+                System.out.println("Best Solution File Generated!");
                 break;    
             } else {
                 System.out.println("Masukkan pilihan yang valid!");
@@ -93,15 +117,16 @@ class FP_OKH {
         }
     }
 
-    static void generateCoursesDegreeFile(int caseIndex) throws Exception {
+    static void generateCoursesDegreeFile(int caseIndex, int degreeType) throws Exception {
         ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
+        ArrayList<Course> courses = cases.get(caseIndex).first;
         if(currConflictsMatrix != null)
             conflictsMatrix = currConflictsMatrix;
         else {
             conflictsMatrix = Util.generateConflictMatrix(caseIndex, ""); 
             currConflictsMatrix = conflictsMatrix;
         }
-        currCoursesDegree = Util.generateConflicts(conflictsMatrix);
+        currCoursesDegree = Util.generateCourseDegree(conflictsMatrix, courses, degreeType);
         String path = OUTPUT_DIR;
         String fileName = PREFIX_COURSES_DEGREE + fileNames[caseIndex] + EXT_OUT;
         File dir = new File(path);
@@ -116,7 +141,7 @@ class FP_OKH {
 
         for(int i = 0; i < currCoursesDegree.size(); i ++) {
             System.out.println("Course Degree " + currCoursesDegree.get(i).courseId + " created.");
-            String outLine = currCoursesDegree.get(i).courseId + ", Degree : " + currCoursesDegree.get(i).degree + ", Score : " + currCoursesDegree.get(i).score;
+            String outLine = currCoursesDegree.get(i).courseId + ", Degree : " + currCoursesDegree.get(i).degree + ", Weighted Degree : " + currCoursesDegree.get(i).weightedDegree;
             out.println(outLine);
         }   
         out.close();
@@ -261,27 +286,32 @@ class FP_OKH {
         }
     }
 
-    static class Conflict implements Comparable<Conflict>{
-        String courseId;
-        int degree;
-        double score;
+    static class Degree implements Comparable<Degree>{
+        // const
+        public static int SORT_TYPE_DEGREE = 1;
+        public static int SORT_TYPE_WEIGHTED_DEGREE = 2; // product of degree & student
         
-        public Conflict(){}
+        String courseId;
+        int degree, weightedDegree, sortType = SORT_TYPE_DEGREE;
 
-        public Conflict(String courseId, int degree) {
+        public Degree(){}
+
+        public Degree(String courseId, int degree, int weightedDegree, int sortType) {
             this.courseId = courseId;
             this.degree = degree;
+            this.weightedDegree = weightedDegree;
+            this.sortType = sortType;
         }
 
         @Override
-        public int compareTo(Conflict c) {
+        public int compareTo(Degree c) {
             // diurutkan dari yang terbesar ke terkecil
-            double diff = c.score - this.score;
-            if(diff > 0.0)
-                return 1;
-            else if(diff < 0.0)
-                return -1;
-            return 0; 
+            if(sortType == SORT_TYPE_DEGREE) {
+                return c.degree - this.degree;
+            } else if(sortType == SORT_TYPE_WEIGHTED_DEGREE) {
+                return c.weightedDegree - this.weightedDegree;
+            }   
+            return 0;
         }
     }
 
@@ -303,35 +333,82 @@ class FP_OKH {
     }
 
     static class Util {
-        public static int solve(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Conflict> coursesDegree, int methodType) {
-            int res = 0;
+        public static void generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
+            ArrayList<ArrayList<String>> colors = new ArrayList();
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
-                ArrayList<ArrayList<String>> colors = new ArrayList();
-                for(int i = 0; i < coursesDegree.size(); i ++) {
-                    if(colors.size() == 0)
-                        colors.add(new ArrayList<String>(Arrays.asList(conflictsMatrix.get(i).first)));
-                    else {
-                        int conflictsIndex = Integer.parseInt(coursesDegree.get(i).courseId) - 1;
-                        ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(conflictsIndex).second;
-                        ArrayList<Pair<Integer, Integer>> candidateColors = new ArrayList();
-                        
-                        checkConflictingTimeslots(colors, conflicts, candidateColors);
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+            } else if(methodType == METHOD_LARGEST_WEIGHTED_DEGREE_FIRST) {
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+            } else if(methodType == METHOD_LEAST_REMAINING_COLOR_FIRST) {
+                colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
+            } else if(methodType == METHOD_COLORING_NO_SORTING) {
+                colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
+            }
+            
+            String path = SOLUTION_DIR;
+            String fileName = fileNames[caseIndex] + EXT_SOLUTION;
+            String fullPath = path + fileName;
+            File dir = new File(path);
+            
+            if(!dir.exists())
+                dir.mkdir();
 
-                        if(candidateColors.size() == 0)
-                            colors.add(new ArrayList<String>(Arrays.asList(coursesDegree.get(i).courseId)));
-                        else  {
-                            //Collections.sort(candidateColors);
-                            colors.get(candidateColors.get(0).first).add(coursesDegree.get(i).courseId);
-                        }
-                    }
+            out = new PrintWriter(fullPath);
+    
+            for(int i = 0; i < colors.size(); i ++) {
+                ArrayList<String> courses = colors.get(i);
+                for(int j = 0; j < courses.size(); j ++) {
+                    int courseId = Integer.parseInt(courses.get(j));
+                    out.println(String.valueOf(courseId) + " " + i);
                 }
+            }   
+            out.close();
+        }
 
+        public static int solve(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType) {
+            int res = 0;
+            ArrayList<ArrayList<String>> colors;
+            if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                res = colors.size();
+            } else if(methodType == METHOD_LARGEST_WEIGHTED_DEGREE_FIRST) {
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                res = colors.size();
+            } else if(methodType == METHOD_LEAST_REMAINING_COLOR_FIRST) {
+                colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
+                res = colors.size();
+            } else if(methodType == METHOD_COLORING_NO_SORTING) {
+                colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
                 res = colors.size();
             }
             return res;
         }
+
+        public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree) {
+            ArrayList<ArrayList<String>> colors = new ArrayList();
+            for(int i = 0; i < coursesDegree.size(); i ++) {
+                if(colors.size() == 0)
+                    colors.add(new ArrayList<String>(Arrays.asList(conflictsMatrix.get(i).first)));
+                else {
+                    int conflictsIndex = Integer.parseInt(coursesDegree.get(i).courseId) - 1;
+                    ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(conflictsIndex).second;
+                    ArrayList<Pair<Integer, Integer>> candidateColors = new ArrayList();
+                    
+                    checkConflictingTimeslots(colors, conflicts, candidateColors);
+
+                    if(candidateColors.size() == 0)
+                        colors.add(new ArrayList<String>(Arrays.asList(coursesDegree.get(i).courseId)));
+                    else  {
+                        //Collections.sort(candidateColors);
+                        colors.get(candidateColors.get(0).first).add(coursesDegree.get(i).courseId);
+                    }
+                }
+            }
+
+            return colors;
+        }
         
-        public static int getMinTimeslots(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, Boolean isLeastRemainingColorFirst) {
+        public static ArrayList<ArrayList<String>> getTimeSlotsByCommonColoring(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, Boolean isLeastRemainingColorFirst) {
             // pakai aturan graph coloring ini
             /*
             1. Color first vertex with first color.
@@ -360,7 +437,7 @@ class FP_OKH {
                     }
                 }
             }
-            return colors.size();
+            return colors;
         }
         
         private static void checkConflictingTimeslots(ArrayList<ArrayList<String>> colors, ArrayList<Pair<String, Boolean>> conflicts,
@@ -392,9 +469,8 @@ class FP_OKH {
             }
         }
 
-        public static ArrayList<Conflict> generateConflicts(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix) {
-            ArrayList<Conflict> res = new ArrayList();
-            int totalConflictCnt = 0;
+        public static ArrayList<Degree> generateCourseDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Course> courses, int sortType) {
+            ArrayList<Degree> res = new ArrayList();
             for(int i = 0; i < conflictsMatrix.size(); i ++) {
                 int conflictCnt = 0;
                 ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(i).second;
@@ -402,15 +478,9 @@ class FP_OKH {
                     if(conflicts.get(j).second)
                         conflictCnt ++;
                 }
-                totalConflictCnt += conflictCnt;
-                res.add(new Conflict(conflictsMatrix.get(i).first, conflictCnt));
+                res.add(new Degree(conflictsMatrix.get(i).first, conflictCnt, conflictCnt * courses.get(i).studentCnt, sortType));
             }
 
-            for(int i = 0; i < res.size(); i ++) {
-                Conflict c = res.get(i);
-                c.score = (double) c.degree / totalConflictCnt;
-            }
-            
             // diurutkan 
             Collections.sort(res);
 
@@ -419,7 +489,7 @@ class FP_OKH {
 
         public static ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> generateConflictMatrix(int caseIndex, String fullPath) throws Exception {
             ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> res = new ArrayList();
-            ArrayList<Course> courses = cases.get(caseIndex).first;
+            /*
             File fl = new File(fullPath);
             if(fl.exists()) {
                 br = new BufferedReader(new FileReader(fullPath));
@@ -437,15 +507,57 @@ class FP_OKH {
                 }
 
                 return res;
-            }
-
+            } 
+            
             ArrayList<Student> students = cases.get(caseIndex).second;
             int courseLen = courses.size();
-            
+
             for(int i = 0; i < courseLen; i ++) {
-                ArrayList<Pair<String, Boolean>> conflicts = getCourseConflicts(courses.get(i).courseId, courses, students, res);
+                ArrayList<Pair<String, Boolean>> conflicts = getCourseConflicts(courses.get(i).courseId, courses, students, res); /
                 res.add(new Pair<String, ArrayList<Pair<String, Boolean>>>(courses.get(i).courseId, conflicts));
                 System.out.println("Course " + courses.get(i).courseId + " conflicts done!");
+            }
+
+            */
+
+            // langsung load item data pada students sebagai index, tanpa harus mencari berdasarkan nama
+
+            ArrayList<Student> students = cases.get(caseIndex).second;
+            ArrayList<Course> courses = cases.get(caseIndex).first;
+            int courseLen = courses.size();
+
+            for(int i = 0; i < courseLen; i ++) {
+                ArrayList<Pair<String, Boolean>> conflicts = getCourseConflictsInit(i, courses); // init matrix dengan nilai 0 semua
+                res.add(new Pair<String, ArrayList<Pair<String, Boolean>>>(courses.get(i).courseId, conflicts));
+            }
+
+            for(int i = 0; i < students.size(); i ++) {
+                ArrayList<String> studentCourses = students.get(i).courseIds;
+                for(int j = 0; j < studentCourses.size() - 1; j ++) {
+                    for(int k = j + 1; k < studentCourses.size(); k ++) {
+                        int first = Integer.parseInt(studentCourses.get(j)) - 1;
+                        int second = Integer.parseInt(studentCourses.get(k)) - 1;
+                        res.get(first).second.get(second).second = true;
+                        res.get(second).second.get(first).second = true;
+                    }
+                }
+              //  System.out.println("Conflicts checking for student " + students.get(i).studentId + " done!");
+            }
+            
+            
+            return res;
+        }
+
+        private static ArrayList<Pair<String, Boolean>> getCourseConflictsInit(int courseIndex, ArrayList<Course> courses) {
+            ArrayList<Pair<String, Boolean>> res = new ArrayList();
+            int courseLen = courses.size();
+            for(int i = 0; i < courseLen; i ++) {
+                Pair<String, Boolean> pr;
+                if(courseIndex == i) 
+                    pr = new Pair<String, Boolean>(courses.get(i).courseId, true);
+                else
+                    pr = new Pair<String, Boolean>(courses.get(i).courseId, false);
+                res.add(pr);
             }
             return res;
         }
