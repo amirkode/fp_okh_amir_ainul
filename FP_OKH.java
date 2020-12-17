@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.sound.midi.SysexMessage;
+
 import java.lang.*;
 import java.io.*;
 
@@ -52,35 +55,60 @@ class FP_OKH {
         while(true) {
             if(choice >= 1 && choice <= fileNames.length) {
                 //dumpCaseToScreen(choice - 1);
+                long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_method1, time_method2, time_method3, time_method4;
+                long start;
+                start = System.currentTimeMillis();
                 generateConflictMatrixFile(choice - 1);  
+                time_conflicts_matrix_generation = System.currentTimeMillis() - start;
+                start = System.currentTimeMillis();
                 generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_DEGREE);
+                time_degree = System.currentTimeMillis() - start;
                 int bestMethod = METHOD_LEAST_REMAINING_COLOR_FIRST;
                 int minTimeSlots = Integer.MAX_VALUE;
+                long time_best_method;
+                start = System.currentTimeMillis();
                 int minTimeSlotsGraphColoringLeastFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LEAST_REMAINING_COLOR_FIRST);
                 minTimeSlots = minTimeSlotsGraphColoringLeastFirst;
+                time_method1 = System.currentTimeMillis() - start;
+                time_best_method = time_method1;
+                start = System.currentTimeMillis();
                 int minTimeSlotsGraphColoring = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_COLORING_NO_SORTING);
+                time_method2 = System.currentTimeMillis() - start;
                 if(minTimeSlots > minTimeSlotsGraphColoring) {
                     minTimeSlots = minTimeSlotsGraphColoring;
                     bestMethod = METHOD_COLORING_NO_SORTING;
+                    time_best_method = time_method2;
                 }
+                start = System.currentTimeMillis();
                 int minTimeSlotsLargestDegreeFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_DEGREE_FIRST);
+                time_method3 = System.currentTimeMillis() - start + time_degree;
                 if(minTimeSlots > minTimeSlotsLargestDegreeFirst) {
                     minTimeSlots = minTimeSlotsLargestDegreeFirst;
                     bestMethod = METHOD_LARGEST_DEGREE_FIRST;
+                    time_best_method = time_method3;
                 }
                 // generate degree kembali dengan weighted degree 
+                start = System.currentTimeMillis();
                 generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_WEIGHTED_DEGREE);
+                time_weigthed_degree = System.currentTimeMillis() - start;
+                start = System.currentTimeMillis();
                 int minTimeSlotsLargestWeigthedDegreeFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_WEIGHTED_DEGREE_FIRST);
+                time_method4 = System.currentTimeMillis() - start + time_weigthed_degree;
                 if(minTimeSlots > minTimeSlotsLargestWeigthedDegreeFirst) {
                     minTimeSlots = minTimeSlotsLargestWeigthedDegreeFirst;
                     bestMethod = METHOD_LARGEST_WEIGHTED_DEGREE_FIRST;
+                    time_best_method = time_method4;
                 }
+                start = System.currentTimeMillis();
                 Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
-                System.out.println("Min timeslots (Least Remaining Color First) : " + minTimeSlotsGraphColoringLeastFirst);
-                System.out.println("Min timeslots (No Sorting) : " + minTimeSlotsGraphColoring);
-                System.out.println("Min timeslots (Largest Degree First) : " + minTimeSlotsLargestDegreeFirst);
-                System.out.println("Min timeslots (Largest Weighted Degree First) : " + minTimeSlotsLargestWeigthedDegreeFirst);
+                time_best_method = System.currentTimeMillis() - start;
+                System.out.println("Conflicts matrix generated in " + time_conflicts_matrix_generation + " milliseconds");
+                System.out.println("Min timeslots (Least Remaining Color First) : " + minTimeSlotsGraphColoringLeastFirst + ", time required : " + time_method1 + " milliseconds");
+                System.out.println("Min timeslots (No Sorting) : " + minTimeSlotsGraphColoring + ", time required : " + time_method2 + " milliseconds");
+                System.out.println("Min timeslots (Largest Degree First) : " + minTimeSlotsLargestDegreeFirst + ", time required : " + time_method3 + " milliseconds");
+                System.out.println("Min timeslots (Largest Weighted Degree First) : " + minTimeSlotsLargestWeigthedDegreeFirst + ", time required : " + time_method4 + " milliseconds");
                 System.out.println("Best Solution File Generated!");
+                System.out.println("Total time required : " + (time_conflicts_matrix_generation + time_best_method) + " milliseconds");
                 break;    
             } else {
                 System.out.println("Masukkan pilihan yang valid!");
@@ -336,9 +364,9 @@ class FP_OKH {
         public static void generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
             ArrayList<ArrayList<String>> colors = new ArrayList();
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
-                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
             } else if(methodType == METHOD_LARGEST_WEIGHTED_DEGREE_FIRST) {
-                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
             } else if(methodType == METHOD_LEAST_REMAINING_COLOR_FIRST) {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
             } else if(methodType == METHOD_COLORING_NO_SORTING) {
@@ -369,10 +397,10 @@ class FP_OKH {
             int res = 0;
             ArrayList<ArrayList<String>> colors;
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
-                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
                 res = colors.size();
             } else if(methodType == METHOD_LARGEST_WEIGHTED_DEGREE_FIRST) {
-                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree);
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
                 res = colors.size();
             } else if(methodType == METHOD_LEAST_REMAINING_COLOR_FIRST) {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
@@ -384,7 +412,7 @@ class FP_OKH {
             return res;
         }
 
-        public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree) {
+        public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, Boolean isLeastRemainingColorFirst) {
             ArrayList<ArrayList<String>> colors = new ArrayList();
             for(int i = 0; i < coursesDegree.size(); i ++) {
                 if(colors.size() == 0)
@@ -399,7 +427,8 @@ class FP_OKH {
                     if(candidateColors.size() == 0)
                         colors.add(new ArrayList<String>(Arrays.asList(coursesDegree.get(i).courseId)));
                     else  {
-                        //Collections.sort(candidateColors);
+                        if(isLeastRemainingColorFirst)
+                            Collections.sort(candidateColors);
                         colors.get(candidateColors.get(0).first).add(coursesDegree.get(i).courseId);
                     }
                 }
