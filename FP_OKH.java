@@ -22,6 +22,7 @@ class FP_OKH {
     static final int METHOD_GREATEST_NUMBER_OF_STUDENTS_FIRST = 3;
     static final int METHOD_LARGEST_WEIGHTED_DEGREE_FIRST = 4;
     static final int METHOD_COLORING_NO_SORTING = 5;
+    static final int METHOD_LWD_LE = 6;
     static BufferedReader br;
     static PrintWriter out;
     static Scanner in = new Scanner(System.in);
@@ -55,7 +56,8 @@ class FP_OKH {
         while(true) {
             if(choice >= 1 && choice <= fileNames.length) {
                 //dumpCaseToScreen(choice - 1);
-                long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_method1, time_method2, time_method3, time_method4;
+                long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_lwd_le, 
+                                time_method1, time_method2, time_method3, time_method4, time_method5;
                 long start;
                 start = System.currentTimeMillis();
                 generateConflictMatrixFile(choice - 1);  
@@ -99,15 +101,28 @@ class FP_OKH {
                     bestMethod = METHOD_LARGEST_WEIGHTED_DEGREE_FIRST;
                     time_best_method = time_method4;
                 }
+                // generate degree kembali dengan tipe sordering LWD Le
+                start = System.currentTimeMillis();
+                generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_LWD_LE);
+                time_lwd_le = System.currentTimeMillis() - start;
+                start = System.currentTimeMillis();
+                int minTimeSlotsLWD_LE = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LWD_LE);
+                time_method5 = System.currentTimeMillis() - start + time_lwd_le;
+                if(minTimeSlots > minTimeSlotsLWD_LE) {
+                    minTimeSlots = minTimeSlotsLWD_LE;
+                    bestMethod = METHOD_LWD_LE;
+                    time_best_method = time_method5;
+                }
                 start = System.currentTimeMillis();
                 Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
-                time_best_method = System.currentTimeMillis() - start;
                 System.out.println("Conflicts matrix generated in " + time_conflicts_matrix_generation + " milliseconds");
                 System.out.println("Min timeslots (Least Remaining Color First) : " + minTimeSlotsGraphColoringLeastFirst + ", time required : " + time_method1 + " milliseconds");
                 System.out.println("Min timeslots (No Sorting) : " + minTimeSlotsGraphColoring + ", time required : " + time_method2 + " milliseconds");
                 System.out.println("Min timeslots (Largest Degree First) : " + minTimeSlotsLargestDegreeFirst + ", time required : " + time_method3 + " milliseconds");
                 System.out.println("Min timeslots (Largest Weighted Degree First) : " + minTimeSlotsLargestWeigthedDegreeFirst + ", time required : " + time_method4 + " milliseconds");
+                System.out.println("Min timeslots (LWD + LE) : " + minTimeSlotsLWD_LE + ", time required : " + time_method5 + " milliseconds");
                 System.out.println("Best Solution File Generated!");
+                System.out.println("Min timeslots : " + minTimeSlots);
                 System.out.println("Total time required : " + (time_conflicts_matrix_generation + time_best_method) + " milliseconds");
                 break;    
             } else {
@@ -168,7 +183,7 @@ class FP_OKH {
         out = new PrintWriter(path + fileName);
 
         for(int i = 0; i < currCoursesDegree.size(); i ++) {
-            System.out.println("Course Degree " + currCoursesDegree.get(i).courseId + " created.");
+           // System.out.println("Course Degree " + currCoursesDegree.get(i).courseId + " created.");
             String outLine = currCoursesDegree.get(i).courseId + ", Degree : " + currCoursesDegree.get(i).degree + ", Weighted Degree : " + currCoursesDegree.get(i).weightedDegree;
             out.println(outLine);
         }   
@@ -318,9 +333,10 @@ class FP_OKH {
         // const
         public static int SORT_TYPE_DEGREE = 1;
         public static int SORT_TYPE_WEIGHTED_DEGREE = 2; // product of degree & student
+        public static int SORT_TYPE_LWD_LE = 3;
         
         String courseId;
-        int degree, weightedDegree, sortType = SORT_TYPE_DEGREE;
+        int degree, weightedDegree, enrollment, sortType = SORT_TYPE_DEGREE;
 
         public Degree(){}
 
@@ -338,7 +354,13 @@ class FP_OKH {
                 return c.degree - this.degree;
             } else if(sortType == SORT_TYPE_WEIGHTED_DEGREE) {
                 return c.weightedDegree - this.weightedDegree;
-            }   
+            } else if(sortType == SORT_TYPE_LWD_LE) {
+                int comp = c.weightedDegree - this.weightedDegree;
+                if(comp == 0) {
+                    return this.enrollment - c.enrollment;
+                }
+                return comp;
+            }
             return 0;
         }
     }
@@ -362,6 +384,7 @@ class FP_OKH {
 
     static class Util {
         public static void generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
+            //System.out.println("conflicts matrix size in solution : " + conflictsMatrix.size());
             ArrayList<ArrayList<String>> colors = new ArrayList();
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
                 colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
@@ -371,8 +394,9 @@ class FP_OKH {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
             } else if(methodType == METHOD_COLORING_NO_SORTING) {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
-            }
-            
+            } else if(methodType == METHOD_LWD_LE) 
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
+               
             String path = SOLUTION_DIR;
             String fileName = fileNames[caseIndex] + EXT_SOLUTION;
             String fullPath = path + fileName;
@@ -382,14 +406,22 @@ class FP_OKH {
                 dir.mkdir();
 
             out = new PrintWriter(fullPath);
-    
+            ArrayList<Pair<Integer, Integer>> res = new ArrayList();
             for(int i = 0; i < colors.size(); i ++) {
                 ArrayList<String> courses = colors.get(i);
                 for(int j = 0; j < courses.size(); j ++) {
                     int courseId = Integer.parseInt(courses.get(j));
-                    out.println(String.valueOf(courseId) + " " + i);
+                    Pair<Integer, Integer> p = new Pair<Integer, Integer>(courseId, i);
+                    p.comparedBySecond = false;
+                    res.add(p);
                 }
             }   
+            // sort here
+            Collections.sort(res);
+            // out
+            for(int i = 0; i < res.size(); i ++) {
+                out.println(res.get(i).first + " " + res.get(i).second);
+            }
             out.close();
         }
 
@@ -408,16 +440,21 @@ class FP_OKH {
             } else if(methodType == METHOD_COLORING_NO_SORTING) {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
                 res = colors.size();
+            } else if(methodType == METHOD_LWD_LE) {
+                colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
+                res = colors.size();
             }
             return res;
         }
 
         public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, Boolean isLeastRemainingColorFirst) {
             ArrayList<ArrayList<String>> colors = new ArrayList();
+            //System.out.println("course degree size : " + coursesDegree.size());
             for(int i = 0; i < coursesDegree.size(); i ++) {
                 if(colors.size() == 0)
-                    colors.add(new ArrayList<String>(Arrays.asList(conflictsMatrix.get(i).first)));
+                    colors.add(new ArrayList<String>(Arrays.asList(coursesDegree.get(i).courseId)));
                 else {
+                   // System.out.println("courseDegree " + i + " : " + coursesDegree.get(i).courseId);
                     int conflictsIndex = Integer.parseInt(coursesDegree.get(i).courseId) - 1;
                     ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(conflictsIndex).second;
                     ArrayList<Pair<Integer, Integer>> candidateColors = new ArrayList();
@@ -433,7 +470,18 @@ class FP_OKH {
                     }
                 }
             }
-
+            
+            // cek to print colors 
+           /* int total = 0;
+            for(int i = 0; i < colors.size(); i ++) {
+                ArrayList<String> currColor = colors.get(i);
+                for(int j = 0; j < currColor.size(); j ++) {
+                    System.out.print(currColor.get(j) + ", ");
+                    total ++;
+                }
+                System.out.println();
+            }
+            System.out.println("total courses : " + total); */
             return colors;
         }
         
@@ -507,7 +555,10 @@ class FP_OKH {
                     if(conflicts.get(j).second)
                         conflictCnt ++;
                 }
-                res.add(new Degree(conflictsMatrix.get(i).first, conflictCnt, conflictCnt * courses.get(i).studentCnt, sortType));
+                Degree d = new Degree(conflictsMatrix.get(i).first, conflictCnt, conflictCnt * courses.get(i).studentCnt, sortType);
+                if(sortType == Degree.SORT_TYPE_LWD_LE)
+                    d.enrollment = courses.get(i).studentCnt;
+                res.add(d);
             }
 
             // diurutkan 
@@ -572,7 +623,8 @@ class FP_OKH {
                 }
               //  System.out.println("Conflicts checking for student " + students.get(i).studentId + " done!");
             }
-            
+
+            System.out.println("all course generated : " + res.size());
             
             return res;
         }
@@ -644,4 +696,24 @@ class FP_OKH {
             return false;
         }
     }
+
+    // kelas untuk Evaluasi
 }
+
+/* 
+
+Problems  max_timeslot  solution_generated  verdict
+CAR91     35            34                  ok
+CAR92     32            32                  ok
+EAR83     24            26                  not feasible
+HEC92     18            18                  ok
+KFU93     20            20                  ok
+LSE91     18            19                  not feasible
+PUR93     42            38                  ok
+RYE92     23            25                  not feasible
+STA83     13            13                  ok
+TRE92     23            23                  ok
+UTA92     35            35                  ok 
+UTE92     10            11                  not feasible
+YOR83     21            23                  not feasible
+*/

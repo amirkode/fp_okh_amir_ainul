@@ -316,8 +316,8 @@
 0405, Degree : 87, Weighted Degree : 4872
 0475, Degree : 90, Weighted Degree : 4860
 0043, Degree : 85, Weighted Degree : 4845
-0264, Degree : 55, Weighted Degree : 4840
 0317, Degree : 88, Weighted Degree : 4840
+0264, Degree : 55, Weighted Degree : 4840
 0667, Degree : 68, Weighted Degree : 4828
 0561, Degree : 74, Weighted Degree : 4810
 0103, Degree : 94, Weighted Degree : 4794
@@ -355,10 +355,10 @@
 0377, Degree : 75, Weighted Degree : 4125
 0604, Degree : 65, Weighted Degree : 4095
 0439, Degree : 77, Weighted Degree : 4081
-0063, Degree : 88, Weighted Degree : 4048
 0461, Degree : 92, Weighted Degree : 4048
-0012, Degree : 63, Weighted Degree : 4032
+0063, Degree : 88, Weighted Degree : 4048
 0564, Degree : 72, Weighted Degree : 4032
+0012, Degree : 63, Weighted Degree : 4032
 0243, Degree : 79, Weighted Degree : 4029
 0379, Degree : 79, Weighted Degree : 4029
 0467, Degree : 79, Weighted Degree : 4029
@@ -405,8 +405,8 @@
 0007, Degree : 70, Weighted Degree : 3290
 0251, Degree : 76, Weighted Degree : 3268
 0124, Degree : 69, Weighted Degree : 3243
-0078, Degree : 60, Weighted Degree : 3240
 0165, Degree : 90, Weighted Degree : 3240
+0078, Degree : 60, Weighted Degree : 3240
 0102, Degree : 61, Weighted Degree : 3233
 0221, Degree : 74, Weighted Degree : 3182
 0311, Degree : 69, Weighted Degree : 3174
@@ -453,8 +453,8 @@
 0324, Degree : 58, Weighted Degree : 2088
 0622, Degree : 40, Weighted Degree : 2080
 0665, Degree : 47, Weighted Degree : 2068
-0077, Degree : 48, Weighted Degree : 2016
 0121, Degree : 63, Weighted Degree : 2016
+0077, Degree : 48, Weighted Degree : 2016
 0061, Degree : 59, Weighted Degree : 2006
 0382, Degree : 55, Weighted Degree : 1980
 0029, Degree : 67, Weighted Degree : 1943
@@ -604,8 +604,8 @@
 0556, Degree : 21, Weighted Degree : 378
 0557, Degree : 21, Weighted Degree : 378
 0558, Degree : 22, Weighted Degree : 374
-0272, Degree : 13, Weighted Degree : 364
 0602, Degree : 26, Weighted Degree : 364
+0272, Degree : 13, Weighted Degree : 364
 0609, Degree : 7, Weighted Degree : 364
 0200, Degree : 25, Weighted Degree : 350
 0652, Degree : 18, Weighted Degree : 342
@@ -632,8 +632,8 @@
 0530, Degree : 19, Weighted Degree : 228
 0133, Degree : 25, Weighted Degree : 225
 0345, Degree : 15, Weighted Degree : 225
-0090, Degree : 14, Weighted Degree : 210
 0607, Degree : 21, Weighted Degree : 210
+0090, Degree : 14, Weighted Degree : 210
 0148, Degree : 19, Weighted Degree : 209
 0091, Degree : 17, Weighted Degree : 204
 0551, Degree : 16, Weighted Degree : 192
@@ -655,8 +655,8 @@
 0333, Degree : 4, Weighted Degree : 88
 0442, Degree : 8, Weighted Degree : 80
 0145, Degree : 15, Weighted Degree : 75
-0608, Degree : 8, Weighted Degree : 72
 0631, Degree : 12, Weighted Degree : 72
+0608, Degree : 8, Weighted Degree : 72
 0656, Degree : 3, Weighted Degree : 69
 0441, Degree : 2, Weighted Degree : 62
 0593, Degree : 12, Weighted Degree : 60
@@ -666,9 +666,9 @@
 0528, Degree : 11, Weighted Degree : 44
 0595, Degree : 11, Weighted Degree : 44
 0440, Degree : 1, Weighted Degree : 42
+0676, Degree : 10, Weighted Degree : 40
 0598, Degree : 8, Weighted Degree : 40
 0613, Degree : 8, Weighted Degree : 40
-0676, Degree : 10, Weighted Degree : 40
 0680, Degree : 9, Weighted Degree : 36
 0332, Degree : 3, Weighted Degree : 30
 0140, Degree : 8, Weighted Degree : 24

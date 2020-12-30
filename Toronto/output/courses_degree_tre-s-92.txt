@@ -221,8 +221,8 @@
 0148, Degree : 19, Weighted Degree : 228
 0232, Degree : 20, Weighted Degree : 200
 0034, Degree : 17, Weighted Degree : 187
-0058, Degree : 16, Weighted Degree : 176
 0135, Degree : 22, Weighted Degree : 176
+0058, Degree : 16, Weighted Degree : 176
 0090, Degree : 16, Weighted Degree : 160
 0021, Degree : 11, Weighted Degree : 132
 0146, Degree : 16, Weighted Degree : 128
@@ -247,8 +247,8 @@
 0136, Degree : 8, Weighted Degree : 24
 0026, Degree : 5, Weighted Degree : 20
 0179, Degree : 6, Weighted Degree : 18
-0024, Degree : 4, Weighted Degree : 16
 0048, Degree : 8, Weighted Degree : 16
+0024, Degree : 4, Weighted Degree : 16
 0138, Degree : 7, Weighted Degree : 14
 0242, Degree : 7, Weighted Degree : 14
 0137, Degree : 6, Weighted Degree : 12
