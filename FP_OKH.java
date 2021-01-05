@@ -44,7 +44,7 @@ class FP_OKH {
             cases.add(pr);
             System.out.println("Data case " + fileNames[i] + " telah dimuat.");
         }
-        
+        /*  
         System.out.println();
         System.out.println("Pilih case : ");
         for(int i = 1; i <= fileNames.length; i ++) {
@@ -52,9 +52,10 @@ class FP_OKH {
         }
         System.out.print("Masukkan pilihan Anda : ");
         int choice = in.nextInt();
-        
-        while(true) {
-            if(choice >= 1 && choice <= fileNames.length) {
+        */
+    // while(true) {
+            for(int choice = 1; choice <= fileNames.length; choice ++) {
+                System.out.println("case " + fileNames[choice - 1]);
                 //dumpCaseToScreen(choice - 1);
                 long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_lwd_le, 
                                 time_method1, time_method2, time_method3, time_method4, time_method5;
@@ -63,6 +64,7 @@ class FP_OKH {
                 generateConflictMatrixFile(choice - 1);  
                 time_conflicts_matrix_generation = System.currentTimeMillis() - start;
                 start = System.currentTimeMillis();
+                System.out.println("conflict matrix size : " + currConflictsMatrix.size());
                 generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_DEGREE);
                 time_degree = System.currentTimeMillis() - start;
                 int bestMethod = METHOD_LEAST_REMAINING_COLOR_FIRST;
@@ -73,6 +75,7 @@ class FP_OKH {
                 minTimeSlots = minTimeSlotsGraphColoringLeastFirst;
                 time_method1 = System.currentTimeMillis() - start;
                 time_best_method = time_method1;
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, METHOD_LEAST_REMAINING_COLOR_FIRST, choice - 1);
                 start = System.currentTimeMillis();
                 int minTimeSlotsGraphColoring = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_COLORING_NO_SORTING);
                 time_method2 = System.currentTimeMillis() - start;
@@ -81,6 +84,7 @@ class FP_OKH {
                     bestMethod = METHOD_COLORING_NO_SORTING;
                     time_best_method = time_method2;
                 }
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, METHOD_COLORING_NO_SORTING, choice - 1);
                 start = System.currentTimeMillis();
                 int minTimeSlotsLargestDegreeFirst = Util.solve(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_DEGREE_FIRST);
                 time_method3 = System.currentTimeMillis() - start + time_degree;
@@ -89,6 +93,7 @@ class FP_OKH {
                     bestMethod = METHOD_LARGEST_DEGREE_FIRST;
                     time_best_method = time_method3;
                 }
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_DEGREE_FIRST, choice - 1);
                 // generate degree kembali dengan weighted degree 
                 start = System.currentTimeMillis();
                 generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_WEIGHTED_DEGREE);
@@ -101,6 +106,7 @@ class FP_OKH {
                     bestMethod = METHOD_LARGEST_WEIGHTED_DEGREE_FIRST;
                     time_best_method = time_method4;
                 }
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, METHOD_LARGEST_WEIGHTED_DEGREE_FIRST, choice - 1);
                 // generate degree kembali dengan tipe sordering LWD Le
                 start = System.currentTimeMillis();
                 generateCoursesDegreeFile(choice - 1, Degree.SORT_TYPE_LWD_LE);
@@ -113,8 +119,8 @@ class FP_OKH {
                     bestMethod = METHOD_LWD_LE;
                     time_best_method = time_method5;
                 }
+                Util.generateSolution(currConflictsMatrix, currCoursesDegree, METHOD_LWD_LE, choice - 1);
                 start = System.currentTimeMillis();
-                Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
                 System.out.println("Conflicts matrix generated in " + time_conflicts_matrix_generation + " milliseconds");
                 System.out.println("Min timeslots (Least Remaining Color First) : " + minTimeSlotsGraphColoringLeastFirst + ", time required : " + time_method1 + " milliseconds");
                 System.out.println("Min timeslots (No Sorting) : " + minTimeSlotsGraphColoring + ", time required : " + time_method2 + " milliseconds");
@@ -123,14 +129,14 @@ class FP_OKH {
                 System.out.println("Min timeslots (LWD + LE) : " + minTimeSlotsLWD_LE + ", time required : " + time_method5 + " milliseconds");
                 System.out.println("Best Solution File Generated!");
                 System.out.println("Min timeslots : " + minTimeSlots);
-                System.out.println("Total time required : " + (time_conflicts_matrix_generation + time_best_method) + " milliseconds");
-                break;    
-            } else {
+                System.out.println("Total time required : " + (time_conflicts_matrix_generation + time_best_method) + " milliseconds"); 
+            }
+            /* else {
                 System.out.println("Masukkan pilihan yang valid!");
                 System.out.print("Masukkan pilihan Anda : ");
                 choice = in.nextInt();
-            }
-        }
+            } */
+       // }
         // test data
        // for(int i = 0; i < fileNames.length; i ++)
         //    dumpCasesToScreen(i);
@@ -161,15 +167,9 @@ class FP_OKH {
     }
 
     static void generateCoursesDegreeFile(int caseIndex, int degreeType) throws Exception {
-        ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
+        //ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
         ArrayList<Course> courses = cases.get(caseIndex).first;
-        if(currConflictsMatrix != null)
-            conflictsMatrix = currConflictsMatrix;
-        else {
-            conflictsMatrix = Util.generateConflictMatrix(caseIndex, ""); 
-            currConflictsMatrix = conflictsMatrix;
-        }
-        currCoursesDegree = Util.generateCourseDegree(conflictsMatrix, courses, degreeType);
+        currCoursesDegree = Util.generateCourseDegree(currConflictsMatrix, courses, degreeType);
         String path = OUTPUT_DIR;
         String fileName = PREFIX_COURSES_DEGREE + fileNames[caseIndex] + EXT_OUT;
         File dir = new File(path);
@@ -195,13 +195,10 @@ class FP_OKH {
         String path = OUTPUT_DIR;
         String fileName = PREFIX_CONFLICTS_MATRIX + fileNames[caseIndex] + EXT_OUT;
         String fullPath = path + fileName;
-        if(currConflictsMatrix != null)
-            conflictsMatrix = currConflictsMatrix;
-        else {
-            conflictsMatrix = Util.generateConflictMatrix(caseIndex, fullPath);
-            currConflictsMatrix = conflictsMatrix;
-        }
 
+        conflictsMatrix = Util.generateConflictMatrix(caseIndex, fullPath);
+        currConflictsMatrix = conflictsMatrix;
+    
         File dir = new File(path);
         
         if(!dir.exists())
@@ -383,7 +380,7 @@ class FP_OKH {
     }
 
     static class Util {
-        public static void generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
+        public static ArrayList<Pair<Integer, Integer>> generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
             //System.out.println("conflicts matrix size in solution : " + conflictsMatrix.size());
             ArrayList<ArrayList<String>> colors = new ArrayList();
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
@@ -398,7 +395,7 @@ class FP_OKH {
                 colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
                
             String path = SOLUTION_DIR;
-            String fileName = fileNames[caseIndex] + EXT_SOLUTION;
+            String fileName = fileNames[caseIndex] + '_' + methodType + EXT_SOLUTION;
             String fullPath = path + fileName;
             File dir = new File(path);
             
@@ -423,6 +420,7 @@ class FP_OKH {
                 out.println(res.get(i).first + " " + res.get(i).second);
             }
             out.close();
+            return res;
         }
 
         public static int solve(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType) {
@@ -698,6 +696,61 @@ class FP_OKH {
     }
 
     // kelas untuk Evaluasi
+    static class ExamEvaluate {
+        ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
+        ArrayList<Course> courses;
+        ArrayList<Student> students;
+        ArrayList<Pair<Integer, Integer>> solution;
+        int numEvents = 0, numSlots = 0, numStudents = 0;
+        public ExamEvaluate(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix,
+                            ArrayList<Course> courses, ArrayList<Student> students, ArrayList<Pair<Integer, Integer>> solution) {
+            this.conflictsMatrix = conflictsMatrix;
+            this.courses = courses;
+            this.students = students;
+            this.solution = solution;
+        }
+
+        void readSlot() {
+            // something
+            numSlots = solution.size();
+        }
+
+        void readEvents() {
+            // something
+            numEvents = courses.size();
+        }
+
+        void readStudents() {
+            // something
+            numStudents = students.size();
+        }
+
+        void processData() {
+            // something
+        }
+
+        void readTimeTable() {
+            // something
+        }
+
+        void calculate() {
+            double sum = 0.0;
+            for(int i = 0; i < numEvents; i ++) {
+                sum += canSchedule(i);
+            }
+            sum /= 2;
+            System.out.println("penalty for the input timetable: " + sum);
+        }
+
+        double canSchedule(int courseIndex) {
+            int j, con;
+          //  dobule v;
+            double cost = 0.0;
+            return 0.0;
+        }
+
+       // double eventInPeriodNumber()
+    }
 }
 
 /* 
