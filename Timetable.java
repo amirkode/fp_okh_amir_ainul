@@ -1,15 +1,9 @@
 import java.util.*;
-
 import javax.sound.midi.SysexMessage;
-
 import java.lang.*;
 import java.io.*;
 
-import Student;
-import Degree;
-import Pair;
-
-class FP_OKH {
+class Timetable {
     static final String PREFIX_STUDENT = "stu_";
     static final String PREFIX_COURSE = "crs_";
     static final String PREFIX_CONFLICTS_MATRIX = "conflict_";
@@ -33,7 +27,7 @@ class FP_OKH {
     static String fileNames[] = {"car-f-92", "car-s-91", "ear-f-83", "hec-s-92", "kfu-s-93", "lse-f-91", 
                     "pur-s-93", "rye-s-93", "sta-f-83", "tre-s-92", "uta-s-92", "ute-s-92", "yor-f-83"};
     static ArrayList<Pair<ArrayList<Course>, ArrayList<Student>>> cases = new ArrayList();
-    static ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> currConflictsMatrix;
+    static ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> currConflictsMatrix;
     static ArrayList<Degree> currCoursesDegree;
     //  AraryList<Student> students;
     public static void main(String[] args) throws Exception{
@@ -58,7 +52,7 @@ class FP_OKH {
         int choice = in.nextInt();
         */
     // while(true) {
-            for(int choice = 1; choice <= fileNames.length; choice ++) {
+            for(int choice = 4; choice <= 4; choice ++) {
                 System.out.println("case " + fileNames[choice - 1]);
                 //dumpCaseToScreen(choice - 1);
                 long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_lwd_le, 
@@ -134,6 +128,17 @@ class FP_OKH {
                 System.out.println("Best Solution File Generated!");
                 System.out.println("Min timeslots : " + minTimeSlots);
                 System.out.println("Total time required : " + (time_conflicts_matrix_generation + time_best_method) + " milliseconds"); 
+                
+                // optimasi dengan heuristics yang lain
+                ArrayList<Pair<Integer, Integer>> initialSol = Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
+                Pair<ArrayList<Course>, ArrayList<Student>> thisCase = cases.get(choice - 1);
+                HillClimbing hc = new HillClimbing(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
+                SimulatedAnnealing sa = new SimulatedAnnealing(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
+                TabuSearch ts = new TabuSearch(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
+                
+                hc.generateSolution();
+                sa.generateSolution();
+                ts.generateSolution();
             }
             /* else {
                 System.out.println("Masukkan pilihan yang valid!");
@@ -195,7 +200,7 @@ class FP_OKH {
     }
 
     static void generateConflictMatrixFile(int caseIndex) throws Exception {
-        ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
+        ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix;
         String path = OUTPUT_DIR;
         String fileName = PREFIX_CONFLICTS_MATRIX + fileNames[caseIndex] + EXT_OUT;
         String fullPath = path + fileName;
@@ -219,11 +224,11 @@ class FP_OKH {
 
         for(int i = 0; i < conflictsMatrix.size(); i ++) {
             System.out.println("Course " + conflictsMatrix.get(i).first + " created.");
-            ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(i).second;
+            ArrayList<Pair<String, Integer>> conflicts = conflictsMatrix.get(i).second;
             String outLine = "";//conflictsMatrix.get(i).first + " : ";
             for(int j = 0; j < conflicts.size(); j ++) {
                 //outLine += "(" + conflicts.get(j).first + ", " + (conflicts.get(j).second ? "1" : "0") + ") ";
-                outLine += (conflicts.get(j).second ? "1" : "0") + " ";
+                outLine += (conflicts.get(j).second > 0 ? "1" : "0") + " ";
             }
             out.println(outLine);
         }   
@@ -271,7 +276,8 @@ class FP_OKH {
     }
 
     static class Util {
-        public static ArrayList<Pair<Integer, Integer>> generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
+        public static ArrayList<Pair<Integer, Integer>> generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix,
+                         ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
             //System.out.println("conflicts matrix size in solution : " + conflictsMatrix.size());
             ArrayList<ArrayList<String>> colors = new ArrayList();
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
@@ -313,8 +319,9 @@ class FP_OKH {
             out.close();
             return res;
         }
+        
 
-        public static int solve(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType) {
+        public static int solve(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, int methodType) {
             int res = 0;
             ArrayList<ArrayList<String>> colors;
             if(methodType == METHOD_LARGEST_DEGREE_FIRST) {
@@ -336,7 +343,8 @@ class FP_OKH {
             return res;
         }
 
-        public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Degree> coursesDegree, Boolean isLeastRemainingColorFirst) {
+        public static ArrayList<ArrayList<String>> getTimeSlotsByDegree(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix,
+                                                    ArrayList<Degree> coursesDegree, Boolean isLeastRemainingColorFirst) {
             ArrayList<ArrayList<String>> colors = new ArrayList();
             //System.out.println("course degree size : " + coursesDegree.size());
             for(int i = 0; i < coursesDegree.size(); i ++) {
@@ -345,7 +353,7 @@ class FP_OKH {
                 else {
                    // System.out.println("courseDegree " + i + " : " + coursesDegree.get(i).courseId);
                     int conflictsIndex = Integer.parseInt(coursesDegree.get(i).courseId) - 1;
-                    ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(conflictsIndex).second;
+                    ArrayList<Pair<String, Integer>> conflicts = conflictsMatrix.get(conflictsIndex).second;
                     ArrayList<Pair<Integer, Integer>> candidateColors = new ArrayList();
                     
                     checkConflictingTimeslots(colors, conflicts, candidateColors);
@@ -374,7 +382,8 @@ class FP_OKH {
             return colors;
         }
         
-        public static ArrayList<ArrayList<String>> getTimeSlotsByCommonColoring(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, Boolean isLeastRemainingColorFirst) {
+        public static ArrayList<ArrayList<String>> getTimeSlotsByCommonColoring(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix,
+                                                         Boolean isLeastRemainingColorFirst) {
             // pakai aturan graph coloring ini
             /*
             1. Color first vertex with first color.
@@ -389,7 +398,7 @@ class FP_OKH {
                 if(colors.size() == 0)
                     colors.add(new ArrayList<String>(Arrays.asList(conflictsMatrix.get(i).first)));
                 else {
-                    ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(i).second;
+                    ArrayList<Pair<String, Integer>> conflicts = conflictsMatrix.get(i).second;
                     ArrayList<Pair<Integer, Integer>> candidateColors = new ArrayList();
                     
                     checkConflictingTimeslots(colors, conflicts, candidateColors);
@@ -406,7 +415,7 @@ class FP_OKH {
             return colors;
         }
         
-        private static void checkConflictingTimeslots(ArrayList<ArrayList<String>> colors, ArrayList<Pair<String, Boolean>> conflicts,
+        private static void checkConflictingTimeslots(ArrayList<ArrayList<String>> colors, ArrayList<Pair<String, Integer>> conflicts,
                         ArrayList<Pair<Integer, Integer>> candidateColors) {
             for(int j = 0; j < colors.size(); j ++) {
                 ArrayList<String> courseIds = colors.get(j);
@@ -424,7 +433,7 @@ class FP_OKH {
                             right = mid - 1;
                     }
 
-                    if(conflicts.get(mid).second) {
+                    if(conflicts.get(mid).second > 0) {
                         thisConflict = true;
                         break;
                     }
@@ -435,13 +444,13 @@ class FP_OKH {
             }
         }
 
-        public static ArrayList<Degree> generateCourseDegree(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix, ArrayList<Course> courses, int sortType) {
+        public static ArrayList<Degree> generateCourseDegree(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix, ArrayList<Course> courses, int sortType) {
             ArrayList<Degree> res = new ArrayList();
             for(int i = 0; i < conflictsMatrix.size(); i ++) {
                 int conflictCnt = 0;
-                ArrayList<Pair<String, Boolean>> conflicts = conflictsMatrix.get(i).second;
+                ArrayList<Pair<String, Integer>> conflicts = conflictsMatrix.get(i).second;
                 for(int j = 0; j < conflicts.size(); j ++) {
-                    if(conflicts.get(j).second)
+                    if(conflicts.get(j).second > 0)
                         conflictCnt ++;
                 }
                 Degree d = new Degree(conflictsMatrix.get(i).first, conflictCnt, conflictCnt * courses.get(i).studentCnt, sortType);
@@ -456,9 +465,9 @@ class FP_OKH {
             return res;
         }
 
-        public static ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> generateConflictMatrix(int caseIndex, String fullPath) throws Exception {
-            ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> res = new ArrayList();
-
+        public static ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> generateConflictMatrix(int caseIndex, String fullPath) throws Exception {
+            ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> res = new ArrayList();
+  
             // langsung load item data pada students sebagai index, tanpa harus mencari berdasarkan nama
 
             ArrayList<Student> students = cases.get(caseIndex).second;
@@ -466,8 +475,8 @@ class FP_OKH {
             int courseLen = courses.size();
 
             for(int i = 0; i < courseLen; i ++) {
-                ArrayList<Pair<String, Boolean>> conflicts = getCourseConflictsInit(i, courses); // init matrix dengan nilai 0 semua
-                res.add(new Pair<String, ArrayList<Pair<String, Boolean>>>(courses.get(i).courseId, conflicts));
+                ArrayList<Pair<String, Integer>> conflicts = getCourseConflictsInit(i, courses); // init matrix dengan nilai 0 semua
+                res.add(new Pair<String, ArrayList<Pair<String, Integer>>>(courses.get(i).courseId, conflicts));
             }
 
             for(int i = 0; i < students.size(); i ++) {
@@ -476,8 +485,8 @@ class FP_OKH {
                     for(int k = j + 1; k < studentCourses.size(); k ++) {
                         int first = Integer.parseInt(studentCourses.get(j)) - 1;
                         int second = Integer.parseInt(studentCourses.get(k)) - 1;
-                        res.get(first).second.get(second).second = true;
-                        res.get(second).second.get(first).second = true;
+                        res.get(first).second.get(second).second ++;
+                        res.get(second).second.get(first).second ++;
                     }
                 }
               //  System.out.println("Conflicts checking for student " + students.get(i).studentId + " done!");
@@ -488,104 +497,56 @@ class FP_OKH {
             return res;
         }
 
-        private static ArrayList<Pair<String, Boolean>> getCourseConflictsInit(int courseIndex, ArrayList<Course> courses) {
-            ArrayList<Pair<String, Boolean>> res = new ArrayList();
+        private static ArrayList<Pair<String, Integer>> getCourseConflictsInit(int courseIndex, ArrayList<Course> courses) {
+            ArrayList<Pair<String, Integer>> res = new ArrayList();
             int courseLen = courses.size();
             for(int i = 0; i < courseLen; i ++) {
-                Pair<String, Boolean> pr;
-                if(courseIndex == i) 
-                    pr = new Pair<String, Boolean>(courses.get(i).courseId, true);
-                else
-                    pr = new Pair<String, Boolean>(courses.get(i).courseId, false);
-                res.add(pr);
+                res.add(new Pair<String, Integer>(courses.get(i).courseId, 0));
             }
             return res;
-        }
-
-        private static ArrayList<Pair<String, Boolean>> getCourseConflicts(String courseId, ArrayList<Course> courses, 
-                                    ArrayList<Student> students, ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsBefore) {
-            ArrayList<Pair<String, Boolean>> res = new ArrayList();
-            int startSearchIndex = conflictsBefore.size();
-            // langsung mengisi sudah dicari sebelumnya 
-            for(int i = 0; i < startSearchIndex; i ++) { 
-                String courseName = conflictsBefore.get(i).first;
-                ArrayList<Pair<String, Boolean>> conflicts = conflictsBefore.get(i).second;
-                Pair<String, Boolean> pr = new Pair<String, Boolean>(courseName, conflicts.get(startSearchIndex).second);
-                res.add(pr);
-            }
-
-            for(int i = startSearchIndex; i < courses.size(); i ++) {
-                Pair<String, Boolean> pr;
-                if(courseId.equals(courses.get(i).courseId))
-                    // jika course nya sama maka tidak perlu cek apakah ada yang bentrok, soalnya pasti sama.
-                    pr = new Pair<String, Boolean>(courseId, true);
-                if(isConflict(courseId, courses.get(i).courseId, students))
-                    pr = new Pair<String, Boolean>(courses.get(i).courseId, true);
-                else
-                    pr = new Pair<String, Boolean>(courses.get(i).courseId, false);
-                
-                res.add(pr);
-            }
-            return res;
-        }
-
-        private static Boolean isConflict(String course1Id, String course2Id, ArrayList<Student> students) {
-            int len = students.size();
-            for(int i = 0; i < len; i ++) { 
-                ArrayList<String> courseIds = students.get(i).courseIds;  
-                if(isCourseExist(course1Id, courseIds))
-                    if(isCourseExist(course2Id, courseIds))
-                        return true;
-            }
-            return false;
-        }
-
-        private static Boolean isCourseExist(String courseId, ArrayList<String> courseIds) {
-            int left = 0, right = courseIds.size() - 1;
-            while(left <= right) {
-                int mid = (left + right) / 2;
-                int comp = courseId.compareTo(courseIds.get(mid));
-                if(comp == 0)
-                    return true;
-                else if(comp > 0)
-                    left = mid + 1;
-                else
-                    right = mid - 1;
-            }
-            return false;
         }
     }
 
     // kelas untuk Evaluasi
     static class ExamEvaluate {
-        ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix;
+        ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix;
         ArrayList<Course> courses;
         ArrayList<Student> students;
         ArrayList<Pair<Integer, Integer>> solution;
-        int numEvents = 0, numSlots = 0, numStudents = 0;
-        public ExamEvaluate(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix,
+        int numCourses = 0, numSlots = 0, numStudents = 0;
+        public ExamEvaluate(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix,
                             ArrayList<Course> courses, ArrayList<Student> students, ArrayList<Pair<Integer, Integer>> solution) {
             this.conflictsMatrix = conflictsMatrix;
             this.courses = courses;
             this.students = students;
-            this.solution = solution;
+            this.solution = new ArrayList(solution);
+            numCourses = courses.size();
+            numStudents = students.size();
         }
 
-        public static double getPenalty(ArrayList<Pair<String, ArrayList<Pair<String, Boolean>>>> conflictsMatrix,
-                             ArrayList<Pair<Integer, Integer>> sol) {
+        public boolean feasibleRandTimeSlot (int randCourse, int randTimeSlot, ArrayList<Pair<Integer, Integer>> currSol) {
+            for(int i = 0; i < numCourses; i ++) {
+                if(conflictsMatrix.get(randCourse).second.get(i).second > 0 && currSol.get(i).second == randTimeSlot)
+                    return false;
+            }
+            return true;
+        }
+
+        public double getPenalty(ArrayList<Pair<Integer, Integer>> sol) {
             double penalty = 0.0;
             int len = conflictsMatrix.size();
-            for(int i = 0; i < len; i ++) {
-                for(int j = 0; j < len; j ++) {
-                    if(conflictsMatrix.get(i).second.get(j).second) {
-                        int diff = (Math.abs(sol.get(j).second - sol.get(i).second);
+            for(int i = 0; i < len - 1; i ++) {
+                for(int j = i + 1; j < len; j ++) {
+                    int conflict = conflictsMatrix.get(i).second.get(j).second;
+                    if(conflict > 0) {
+                        int diff = Math.abs(sol.get(j).second - sol.get(i).second);
                         if(diff >= 1 && diff <= 5) {
-                            penalty
+                            penalty += conflict * (Math.pow(2 , 5 - diff));
                         }
                     }
                 }
             }
-            return penalty;
+            return penalty / students.size();
         }
 
        // double eventInPeriodNumber()
