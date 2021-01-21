@@ -1,7 +1,7 @@
 import java.util.*;
 
 class SimulatedAnnealing extends Heuristics {
-    double temperature = 1000.0; 
+    double temperature = 100.0; 
     double coolingfactor = 0.995;
 
     SimulatedAnnealing(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix, 
@@ -17,13 +17,13 @@ class SimulatedAnnealing extends Heuristics {
     }
 
     public ArrayList<Pair<Integer, Integer>> generateSolution() {
+        // init best solution and current solution var
         ArrayList<Pair<Integer, Integer>> bestSol = cloneSolution(initialSol);
         ArrayList<Pair<Integer, Integer>> currSol = cloneSolution(initialSol);
-        double initialPenalty = eval.getPenalty(initialSol);
         double bestPenalty = eval.getPenalty(initialSol);
-        long startTime = System.currentTimeMillis();
 
         for(int i = 0; i < numOfIts; i ++) {
+            // pilih method Low Level Heuristics (move1, swap2, move2, swap3, move3) secara random
             int llhMethod = randomNumber(1, 5);
             ArrayList<Pair<Integer, Integer>> llhSol;
             
@@ -53,28 +53,30 @@ class SimulatedAnnealing extends Heuristics {
                 }
             }
             
-            double currPenalty = eval.getPenalty(bestSol);
+            double currPenalty = eval.getPenalty(currSol);
             double llhPenalty = eval.getPenalty(llhSol);
 
+            // menentukan apakah current solution lebih buruk dari pada solusi Low Level Heuristics
             if(eval.getPenalty(currSol) > eval.getPenalty(llhSol)) {
                 currSol = cloneSolution(llhSol);
                 currPenalty = eval.getPenalty(currSol);
 
+                // menentukan apakah best solution lebih buruk dari pada current solution
                 if(bestPenalty > currPenalty) {
                     bestSol = cloneSolution(llhSol);
                     bestPenalty = currPenalty;
                   //  System.out.println("pernah 2");
                 }
-            } else if(probability(currPenalty, llhPenalty, temperature) > Math.random())
+            } else if(probability(currPenalty, llhPenalty, temperature) > Math.random()) {
+                // cek acceptance probability untuk solusi LLH saat ini
                 currSol = cloneSolution(llhSol);
-
+            } else 
+                coolingfactor *= 1.2;
+            
+            // mengurangi temperatur setiap iterasi
             temperature -= coolingfactor;
-        }
-        System.out.println();
-        System.out.println("Simulated Annealing : ");
-        System.out.println("Solution generated in " + (System.currentTimeMillis() - startTime) + " ms");
-        System.out.println("Penalty : " + bestPenalty);
-        System.out.println("Intial Penalty : " + initialPenalty);
+        } 
+
         return bestSol;
     }
 

@@ -20,24 +20,17 @@ class TabuSearch extends Heuristics {
         ArrayList<Pair<Integer, Integer>> bestCandidate = cloneSolution(initialSol);
         ArrayList<Pair<Integer, Integer>> currSol = cloneSolution(initialSol);
         Queue<ArrayList<Pair<Integer, Integer>>> tabuList = new LinkedList();
-        double initialPenalty = eval.getPenalty(initialSol);
-        long startTime = System.currentTimeMillis();
 
         tabuList.add(new ArrayList(initialSol));
 
         for(int i = 0; i < numOfIts; i ++) {
             ArrayList<ArrayList<Pair<Integer, Integer>>> sneighbor = new ArrayList();
             
-            currSol = llh.move1(currSol);
-            sneighbor.add(cloneSolution(currSol));
-            currSol = llh.swap2(currSol);
-            sneighbor.add(cloneSolution(currSol));
-            currSol = llh.move2(currSol);
-            sneighbor.add(cloneSolution(currSol));
-            currSol = llh.swap3(currSol);
-            sneighbor.add(cloneSolution(currSol));
-            currSol = llh.move3(currSol);
-            sneighbor.add(cloneSolution(currSol));
+            sneighbor.add(llh.move1(bestSol));
+            sneighbor.add(llh.swap2(bestSol));
+            sneighbor.add(llh.move2(bestSol));
+            sneighbor.add(llh.swap3(bestSol));
+            sneighbor.add(llh.move3(bestSol));
 
             // memilih best neighborhood
             for(int j = 0; j < sneighbor.size(); j ++) {
@@ -47,8 +40,9 @@ class TabuSearch extends Heuristics {
                 }
             }
 
-            if(eval.getPenalty(bestSol) > eval.getPenalty(bestCandidate))
+            if(eval.getPenalty(bestSol) > eval.getPenalty(bestCandidate)) {
                 bestSol = cloneSolution(bestCandidate);
+            }
             
             tabuList.add(bestCandidate);
 
@@ -56,15 +50,7 @@ class TabuSearch extends Heuristics {
                 tabuList.remove();
            // System.out.println("iterasi ke " + i);
         }
-        System.out.println();
-        System.out.println("Tabu Search : ");
-        System.out.println("Solution generated in " + (System.currentTimeMillis() - startTime) + " ms");
-        System.out.println("Penalty : " + eval.getPenalty(bestSol));
-        System.out.println("Intial Penalty : " + initialPenalty);
-        return bestSol;
-    }
 
-    private double probability(double currPenalty, double llhPenalty, double t) {
-        return Math.exp((currPenalty - llhPenalty) / t);
+        return bestSol;
     }
 }

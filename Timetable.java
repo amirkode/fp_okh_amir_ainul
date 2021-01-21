@@ -42,7 +42,7 @@ class Timetable {
             cases.add(pr);
             System.out.println("Data case " + fileNames[i] + " telah dimuat.");
         }
-        /*  
+        
         System.out.println();
         System.out.println("Pilih case : ");
         for(int i = 1; i <= fileNames.length; i ++) {
@@ -50,9 +50,9 @@ class Timetable {
         }
         System.out.print("Masukkan pilihan Anda : ");
         int choice = in.nextInt();
-        */
-    // while(true) {
-            for(int choice = 4; choice <= 4; choice ++) {
+        
+        while(true) {
+            if(choice >= 1 && choice <= 13) {
                 System.out.println("case " + fileNames[choice - 1]);
                 //dumpCaseToScreen(choice - 1);
                 long time_conflicts_matrix_generation = 0, time_degree, time_weigthed_degree, time_lwd_le, 
@@ -133,19 +133,54 @@ class Timetable {
                 ArrayList<Pair<Integer, Integer>> initialSol = Util.generateSolution(currConflictsMatrix, currCoursesDegree, bestMethod, choice - 1);
                 Pair<ArrayList<Course>, ArrayList<Student>> thisCase = cases.get(choice - 1);
                 HillClimbing hc = new HillClimbing(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
-                SimulatedAnnealing sa = new SimulatedAnnealing(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
-                TabuSearch ts = new TabuSearch(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 1000000, minTimeSlots);
-                
-                hc.generateSolution();
-                sa.generateSolution();
-                ts.generateSolution();
-            }
-            /* else {
+                SimulatedAnnealing sa = new SimulatedAnnealing(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 10000, minTimeSlots);
+                TabuSearch ts = new TabuSearch(currConflictsMatrix, initialSol, thisCase.first, thisCase.second, 10000, minTimeSlots);
+
+                for(int i = 1; i <= 5; i ++) {
+                    System.out.println();
+                    System.out.println("Intial method : " + Util.getBestMethod(bestMethod));
+                    System.out.println("Num of Timeslots : " + minTimeSlots);
+                    
+                    ArrayList<Long> times = new ArrayList();
+                    long startTime = System.currentTimeMillis();
+                    ExamEvaluate eval = new ExamEvaluate(currConflictsMatrix, thisCase.first, thisCase.second, initialSol);
+                    ArrayList<Pair<Integer, Integer>> hcSol = hc.generateSolution();
+                    System.out.println();
+                    System.out.println("Hill Climbing : ");
+                    System.out.println("Solution generated in " + (System.currentTimeMillis() - startTime) + " ms");
+                    times.add(System.currentTimeMillis() - startTime);
+                    System.out.println("Penalty : " + eval.getPenalty(hcSol));
+                    System.out.println("Intial Penalty : " + eval.getPenalty(initialSol));
+                    System.out.println("Delta : " + ((eval.getPenalty(initialSol) - eval.getPenalty(hcSol) / eval.getPenalty(initialSol))));
+                    startTime = System.currentTimeMillis();
+                    ArrayList<Pair<Integer, Integer>> saSol = sa.generateSolution();
+                    System.out.println();
+                    System.out.println("Simulated Annealing : ");
+                    System.out.println("Solution generated in " + (System.currentTimeMillis() - startTime) + " ms");
+                    times.add(System.currentTimeMillis() - startTime);
+                    System.out.println("Penalty : " + eval.getPenalty(saSol));
+                    System.out.println("Intial Penalty : " + eval.getPenalty(initialSol));
+                    System.out.println("Delta : " + ((eval.getPenalty(initialSol) - eval.getPenalty(saSol) / eval.getPenalty(initialSol))));
+                    startTime = System.currentTimeMillis();
+                    ArrayList<Pair<Integer, Integer>> tsSol = ts.generateSolution(); System.out.println();
+                    System.out.println("Tabu Search : ");
+                    System.out.println("Solution generated in " + (System.currentTimeMillis() - startTime) + " ms");
+                    times.add(System.currentTimeMillis() - startTime);
+                    System.out.println("Penalty : " + eval.getPenalty(tsSol));
+                    System.out.println("Intial Penalty : " + eval.getPenalty(initialSol));
+                    System.out.println("Delta : " + ((eval.getPenalty(initialSol) - eval.getPenalty(tsSol) / eval.getPenalty(initialSol))));
+                    
+                    Util.writeStats(new Pair<Long, ArrayList<Pair<Integer, Integer>>>(time_best_method, initialSol), new Pair<Long, ArrayList<Pair<Integer, Integer>>>(times.get(0), hcSol),
+                    new Pair<Long, ArrayList<Pair<Integer, Integer>>>(times.get(1), saSol), 
+                    new Pair<Long, ArrayList<Pair<Integer, Integer>>>(times.get(2), tsSol), fileNames[choice - 1], eval, i);
+                }
+                break;
+            } else {
                 System.out.println("Masukkan pilihan yang valid!");
                 System.out.print("Masukkan pilihan Anda : ");
                 choice = in.nextInt();
-            } */
-       // }
+            }
+        }
         // test data
        // for(int i = 0; i < fileNames.length; i ++)
         //    dumpCasesToScreen(i);
@@ -276,6 +311,54 @@ class Timetable {
     }
 
     static class Util {
+        public static void writeStats(Pair<Long, ArrayList<Pair<Integer, Integer>>> initSol, Pair<Long, ArrayList<Pair<Integer, Integer>>> hcSol, 
+        Pair<Long, ArrayList<Pair<Integer, Integer>>> saSol, Pair<Long, ArrayList<Pair<Integer, Integer>>> tsSol, String caseName, ExamEvaluate eval, int i) throws Exception {
+            String path = OUTPUT_DIR + "stats";
+            String fileName = caseName + "_run_" + i + EXT_OUT;
+            String fullPath = path + "/" + fileName;
+
+            File dir = new File(path);
+            
+            if(!dir.exists())
+                dir.mkdir();
+    
+            File newFile = new File(fullPath);
+    
+            if(!newFile.exists())
+                newFile.createNewFile();
+    
+            FileOutputStream fos = new FileOutputStream(newFile, false);
+            out = new PrintWriter(fullPath);
+            String outLine = "";
+            double fInit = eval.getPenalty(initSol.second);
+            double fHc = eval.getPenalty(hcSol.second);
+            double fSa = eval.getPenalty(saSol.second);
+            double fTs = eval.getPenalty(tsSol.second);
+            outLine = "F(i) : " + fInit  + ", T(i) : " + ((double) initSol.first / 1000) + " s";
+            out.println(outLine);
+            outLine = "F(hc) : " + fHc + ", T(hc) : " + ((double) hcSol.first / 1000) + " s" + 
+                        ", d : " + String.format("%.2f", ((fInit - fHc) / fInit) * 100.0) + " %";
+            out.println(outLine);
+            outLine = "F(sa) : " + fSa + ", T(sa) : " + ((double) saSol.first / 1000) + " s" +
+                        ", d : " + String.format("%.2f", ((fInit - fSa) / fInit) * 100.0) + " %";
+            out.println(outLine);
+            outLine = "F(ts) : " + fTs + ", T(ts) : " + ((double) tsSol.first / 1000) +  " s" +
+                        ", d : " + String.format("%.2f", ((fInit - fTs) / fInit) * 100.0) + " %";
+            out.println(outLine);
+            out.close();
+        }
+
+        public static String getBestMethod(int type) {
+            switch(type) {
+                case METHOD_LARGEST_DEGREE_FIRST: return "Largest Degree First";
+                case METHOD_COLORING_NO_SORTING: return "No Sorting Coloring";
+                case METHOD_LARGEST_WEIGHTED_DEGREE_FIRST: return "Largest Weighted Degree First";
+                case METHOD_LEAST_REMAINING_COLOR_FIRST: return "Least Remaining Color First";
+                case METHOD_LWD_LE: return "LWD + LE";
+            }
+            return "";
+        }
+
         public static ArrayList<Pair<Integer, Integer>> generateSolution(ArrayList<Pair<String, ArrayList<Pair<String, Integer>>>> conflictsMatrix,
                          ArrayList<Degree> coursesDegree, int methodType, int caseIndex) throws Exception {
             //System.out.println("conflicts matrix size in solution : " + conflictsMatrix.size());
@@ -526,6 +609,7 @@ class Timetable {
 
         public boolean feasibleRandTimeSlot (int randCourse, int randTimeSlot, ArrayList<Pair<Integer, Integer>> currSol) {
             for(int i = 0; i < numCourses; i ++) {
+                // return false jika ada konflik dan timeslot setiap iterasi sama dengan random timeslot
                 if(conflictsMatrix.get(randCourse).second.get(i).second > 0 && currSol.get(i).second == randTimeSlot)
                     return false;
             }
@@ -540,8 +624,8 @@ class Timetable {
                     int conflict = conflictsMatrix.get(i).second.get(j).second;
                     if(conflict > 0) {
                         int diff = Math.abs(sol.get(j).second - sol.get(i).second);
-                        if(diff >= 1 && diff <= 5) {
-                            penalty += conflict * (Math.pow(2 , 5 - diff));
+                        if(diff >= 1 && diff < 5) {
+                            penalty += conflict * (Math.pow(2 , 4 - diff));
                         }
                     }
                 }

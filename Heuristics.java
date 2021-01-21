@@ -17,15 +17,16 @@ public abstract class Heuristics {
     public abstract ArrayList<Pair<Integer, Integer>> generateSolution();
 
     public int random(int n) {
-        // akan return 0 ... n - 1
+        // akan return 0 ... n - 1 (inklusif)
         return rand.nextInt(n);    
     }
 
     public int randomNumber(int min, int max) {
-        // akan return min ... max
+        // akan return min ... max (inklusif)
 		return rand.nextInt(max - min) + min;
     }
     
+    // clone list untuk menghindari referensi objek yang sama
     public ArrayList<Pair<Integer, Integer>> cloneSolution(ArrayList<Pair<Integer, Integer>> sol) {
         ArrayList<Pair<Integer, Integer>> res = new ArrayList(); 
         
@@ -38,14 +39,16 @@ public abstract class Heuristics {
 
     class LowLevelHeuristics {
 
+        // melakukan perubahan timeslot pada suatu course dengan random timeslot
         public ArrayList<Pair<Integer, Integer>> move(ArrayList<Pair<Integer, Integer>> sol, int numOfMoves) {
             ArrayList<Pair<Integer, Integer>> res = cloneSolution(sol);
             int randCourse, randTimeSlot, numOfCourses = courses.size();
         
+            // melakukan move secara dinamis berdasarkan jumlah moves
             for(int i = 0; i < numOfMoves; i ++) {
                 randCourse = random(numOfCourses);
                 randTimeSlot = random(numOfTimeSlots);
-                
+                // check apakah setelah moves solusi masih bisa diterima?
                 if(eval.feasibleRandTimeSlot(randCourse, randTimeSlot, res))
                     res.get(randCourse).second = randTimeSlot;
             }
@@ -65,6 +68,11 @@ public abstract class Heuristics {
             return move(sol, 3);
         }
 
+        /**
+         * Menukar timeslot dari n course dengan pol
+         * untuk i = 1 ... n, timeslot course i diubah nilainya sama dengan course i - 1
+         * untuk course 0, nilainya sama dengan course n  
+         */
         public ArrayList<Pair<Integer, Integer>> swap(ArrayList<Pair<Integer, Integer>> sol, int numOfSwaps) {
             if(numOfSwaps < 2)
                 return cloneSolution(sol);
@@ -76,17 +84,15 @@ public abstract class Heuristics {
            for(int i = 0; i < numOfSwaps; i ++) 
                 randCourses.add(random(numOfCourses));
            
-           int firstTimeSlot = res.get(randCourses.get(0)).second;
+           int lastTimeSlot = res.get(randCourses.get(0)).second;
 
-           for(int i = 0; i < numOfSwaps; i ++) {
-               for(int j = i + 1; j < numOfSwaps; j ++) {
-                   if(eval.feasibleRandTimeSlot(randCourses.get(i), res.get(randCourses.get(j)).second, res))
-                        res.get(randCourses.get(i)).second = res.get(randCourses.get(j)).second;
-               }
+           for(int i = 1; i < numOfSwaps; i ++) {
+                if(eval.feasibleRandTimeSlot(randCourses.get(i), res.get(randCourses.get(i - 1)).second, res))
+                    res.get(randCourses.get(i)).second = res.get(randCourses.get(i - 1)).second;
            }
            // set course terakhir ke timslot pertama
-           if(eval.feasibleRandTimeSlot(randCourses.get(numOfSwaps - 1), firstTimeSlot, res))
-                res.get(randCourses.get(numOfSwaps - 1)).second = firstTimeSlot;
+           if(eval.feasibleRandTimeSlot(randCourses.get(0), lastTimeSlot, res))
+                res.get(randCourses.get(0)).second = lastTimeSlot;
 
            return res;
         }
