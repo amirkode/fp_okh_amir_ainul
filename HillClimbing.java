@@ -21,25 +21,27 @@ class HillClimbing extends Heuristics {
         
         int randCourse, randTimeSlot, courseLen = courses.size();
         // init best penalty
-        double bestPenalty = eval.getPenalty(bestSol);
+        double bestPenalty = eval.getPenalty(currSol);
         
         for(int i = 0; i < numOfIts; i ++) {
             // choose a random course and a random timeslot 
             randCourse = random(courseLen);
             randTimeSlot = random(numOfTimeSlots);
             // apakah solusi random bisa dilakukan checking
-            if(eval.feasibleRandTimeSlot(randCourse, randTimeSlot, bestSol)) {
+            if(eval.feasibleRandTimeSlot(randCourse, randTimeSlot, currSol)) {
+                int tempTimeslot = currSol.get(randCourse).second;
+                double currPenalty = eval.updatePenaltyMove1(bestPenalty, randCourse, randTimeSlot, currSol);
                 currSol.get(randCourse).second = randTimeSlot;
-                double currPenalty = eval.getPenalty(currSol);
                 // membandingkan penalti yang ada
-                if(bestPenalty > currPenalty) { 
-                    // set solusi yang lebih baik ke bestPenalty
+                if(bestPenalty <= currPenalty) {
+                    currSol.get(randCourse).second = tempTimeslot;
+                } else {
                     bestPenalty = currPenalty;
-                    bestSol = cloneSolution(currSol);
                 }
             }
+           // System.out.println("hc ke - " + (i + 1));
         }
         
-        return bestSol;
+        return currSol;
     }
 }

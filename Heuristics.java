@@ -56,6 +56,26 @@ public abstract class Heuristics {
             return res;
         }
 
+        // melakukan perubahan timeslot pada suatu course dengan random timeslot
+        public ArrayList<Pair<Integer, Integer>> move_(ArrayList<Pair<Integer, Integer>> sol, int numOfMoves) {
+            ArrayList<Pair<Integer, Integer>> res = cloneSolution(sol);
+            ArrayList<Pair<Integer, Integer>> moves = new ArrayList();
+            int randCourse, randTimeSlot, numOfCourses = courses.size();
+        
+            // melakukan move secara dinamis berdasarkan jumlah moves
+            for(int i = 0; i < numOfMoves; i ++) {
+                randCourse = random(numOfCourses);
+                randTimeSlot = random(numOfTimeSlots);
+                // check apakah setelah moves solusi masih bisa diterima?
+                if(eval.feasibleRandTimeSlot(randCourse, randTimeSlot, res)) {
+                    res.get(randCourse).second = randTimeSlot;
+                    moves.add(new Pair<Integer, Integer>(randCourse, randTimeSlot));
+                }
+            }
+
+            return moves;
+        }
+
         public ArrayList<Pair<Integer, Integer>> move1(ArrayList<Pair<Integer, Integer>> sol) {
             return move(sol, 1);
         }
@@ -95,6 +115,35 @@ public abstract class Heuristics {
                 res.get(randCourses.get(0)).second = lastTimeSlot;
 
            return res;
+        }
+
+        public ArrayList<Pair<Integer, Integer>> swap_(ArrayList<Pair<Integer, Integer>> sol, int numOfSwaps) {
+            ArrayList<Pair<Integer, Integer>> swaps = new ArrayList();
+            if(numOfSwaps < 2)
+                return swaps;//cloneSolution(sol);
+            
+           ArrayList<Pair<Integer, Integer>> res = cloneSolution(sol);
+           ArrayList<Integer> randCourses = new ArrayList();
+           int numOfCourses = courses.size();
+        
+           for(int i = 0; i < numOfSwaps; i ++) 
+                randCourses.add(random(numOfCourses));
+           
+           int lastTimeSlot = res.get(randCourses.get(0)).second;
+
+           for(int i = 1; i < numOfSwaps; i ++) {
+                if(eval.feasibleRandTimeSlot(randCourses.get(i), res.get(randCourses.get(i - 1)).second, res)) {
+                    res.get(randCourses.get(i)).second = res.get(randCourses.get(i - 1)).second;
+                    swaps.add(new Pair<Integer, Integer>(randCourses.get(i), res.get(randCourses.get(i - 1)).second));
+                }
+           }
+           // set course terakhir ke timslot pertama
+           if(eval.feasibleRandTimeSlot(randCourses.get(0), lastTimeSlot, res)) {
+                res.get(randCourses.get(0)).second = lastTimeSlot;
+                swaps.add(new Pair<Integer, Integer>(randCourses.get(0), lastTimeSlot));
+         }
+
+           return swaps;
         }
 
         public ArrayList<Pair<Integer, Integer>> swap2(ArrayList<Pair<Integer, Integer>> sol) {

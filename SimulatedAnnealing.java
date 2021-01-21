@@ -21,55 +21,63 @@ class SimulatedAnnealing extends Heuristics {
         ArrayList<Pair<Integer, Integer>> bestSol = cloneSolution(initialSol);
         ArrayList<Pair<Integer, Integer>> currSol = cloneSolution(initialSol);
         double bestPenalty = eval.getPenalty(initialSol);
-
+        double currPenalty = eval.getPenalty(currSol);
         for(int i = 0; i < numOfIts; i ++) {
             // pilih method Low Level Heuristics (move1, swap2, move2, swap3, move3) secara random
             int llhMethod = randomNumber(1, 5);
             ArrayList<Pair<Integer, Integer>> llhSol;
-            
+            boolean isMove = true;
             switch(llhMethod) {
                 case 1: {
-                    llhSol = llh.move1(currSol);
+                    llhSol = llh.move_(currSol, 1);
                     break;
                 }
                 case 2: {
-                    llhSol = llh.swap2(currSol);
+                    isMove = false;
+                    llhSol = llh.swap_(currSol, 2);
                     break;
                 }
                 case 3: {
-                    llhSol = llh.move2(currSol);
+                    llhSol = llh.move_(currSol, 2);
                     break;
                 }
                 case 4: {
-                    llhSol = llh.swap3(currSol);
+                    isMove = false;
+                    llhSol = llh.swap_(currSol, 3);
                     break;
                 }
                 case 5: {
-                    llhSol = llh.move3(currSol);
+                    llhSol = llh.move_(currSol, 3);
                     break;
                 }
                 default: {
-                    llhSol = llh.move1(currSol);
+                    llhSol = llh.move_(currSol, 1);
                 }
             }
             
-            double currPenalty = eval.getPenalty(currSol);
-            double llhPenalty = eval.getPenalty(llhSol);
+            double llhPenalty = eval.getPenaltyByTimeslotChanges(currPenalty, llhSol, currSol);
 
             // menentukan apakah current solution lebih buruk dari pada solusi Low Level Heuristics
-            if(eval.getPenalty(currSol) > eval.getPenalty(llhSol)) {
-                currSol = cloneSolution(llhSol);
-                currPenalty = eval.getPenalty(currSol);
+            if(currPenalty > llhPenalty) {
+                for(int j = 0; j < llhSol.size(); j ++) {
+                    currSol.get(llhSol.get(j).first).second = llhSol.get(j).second;
+                }
+                //currSol = cloneSolution(llhSol);
+                currPenalty = llhPenalty;
 
                 // menentukan apakah best solution lebih buruk dari pada current solution
                 if(bestPenalty > currPenalty) {
-                    bestSol = cloneSolution(llhSol);
+                    bestSol = cloneSolution(currSol);
                     bestPenalty = currPenalty;
                   //  System.out.println("pernah 2");
                 }
             } else if(probability(currPenalty, llhPenalty, temperature) > Math.random()) {
                 // cek acceptance probability untuk solusi LLH saat ini
-                currSol = cloneSolution(llhSol);
+                //currSol = cloneSolution(llhSol);
+                for(int j = 0; j < llhSol.size(); j ++) {
+                    currSol.get(llhSol.get(j).first).second = llhSol.get(j).second;
+                }
+                currPenalty = llhPenalty;
             } else 
                 coolingfactor *= 1.2;
             

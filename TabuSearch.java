@@ -20,28 +20,41 @@ class TabuSearch extends Heuristics {
         ArrayList<Pair<Integer, Integer>> bestCandidate = cloneSolution(initialSol);
         ArrayList<Pair<Integer, Integer>> currSol = cloneSolution(initialSol);
         Queue<ArrayList<Pair<Integer, Integer>>> tabuList = new LinkedList();
-
+        
+        double bestPenalty = eval.getPenalty(bestSol);
+        double bestCandidatePenalty = eval.getPenalty(bestCandidate);
+        
         tabuList.add(new ArrayList(initialSol));
 
         for(int i = 0; i < numOfIts; i ++) {
             ArrayList<ArrayList<Pair<Integer, Integer>>> sneighbor = new ArrayList();
             
-            sneighbor.add(llh.move1(bestSol));
-            sneighbor.add(llh.swap2(bestSol));
-            sneighbor.add(llh.move2(bestSol));
-            sneighbor.add(llh.swap3(bestSol));
-            sneighbor.add(llh.move3(bestSol));
+            sneighbor.add(llh.move_(bestSol, 1));
+            sneighbor.add(llh.swap_(bestSol, 2));
+            sneighbor.add(llh.move_(bestSol, 2));
+            sneighbor.add(llh.swap_(bestSol, 3));
+            sneighbor.add(llh.move_(bestSol, 3));
 
+            int chosen = -1;
             // memilih best neighborhood
             for(int j = 0; j < sneighbor.size(); j ++) {
                 if(!tabuList.contains(sneighbor.get(j))) {
-                    if(eval.getPenalty(sneighbor.get(j)) < eval.getPenalty(bestCandidate))
-                        bestCandidate = cloneSolution(sneighbor.get(j));
+                    double neighborPenalty = eval.getPenaltyByTimeslotChanges(bestCandidatePenalty, sneighbor.get(j), bestCandidate);
+                    if(neighborPenalty < bestCandidatePenalty) {
+                        bestCandidatePenalty = neighborPenalty;
+                        chosen = j;
+                    }
                 }
             }
 
-            if(eval.getPenalty(bestSol) > eval.getPenalty(bestCandidate)) {
-                bestSol = cloneSolution(bestCandidate);
+            if(chosen != -1) {
+                ArrayList<Pair<Integer, Integer>> chosenMethod = sneighbor.get(chosen); 
+                for(int j = 0; j < chosenMethod.size(); j ++) {
+                    bestCandidate.get(chosenMethod.get(j).first).second = chosenMethod.get(j).second;
+                }
+                //if(eval.getPenalty(bestSol) > eval.getPenalty(bestCandidate)) {
+                 //   bestSol = cloneSolution(bestCandidate);
+               // }
             }
             
             tabuList.add(bestCandidate);
@@ -51,6 +64,6 @@ class TabuSearch extends Heuristics {
            // System.out.println("iterasi ke " + i);
         }
 
-        return bestSol;
+        return bestCandidate;
     }
 }

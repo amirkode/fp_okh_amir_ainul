@@ -417,7 +417,7 @@ class Timetable {
                 colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
                 res = colors.size();
             } else if(methodType == METHOD_COLORING_NO_SORTING) {
-                colors = getTimeSlotsByCommonColoring(conflictsMatrix, true);
+                colors = getTimeSlotsByCommonColoring(conflictsMatrix, false);
                 res = colors.size();
             } else if(methodType == METHOD_LWD_LE) {
                 colors = getTimeSlotsByDegree(conflictsMatrix, coursesDegree, false);
@@ -616,6 +616,15 @@ class Timetable {
             return true;
         }
 
+        public boolean feasibleRandTimeSlot1 (int randCourse, int randTimeSlot, ArrayList<Pair<Integer, Integer>> currSol) {
+            for(int i = 0; i < numCourses; i ++) {
+                // return false jika ada konflik dan timeslot setiap iterasi sama dengan random timeslot
+                if(conflictsMatrix.get(randCourse).second.get(i).second > 0 && currSol.get(i).second == randTimeSlot)
+                    return false;
+            }
+            return true;
+        }
+
         public double getPenalty(ArrayList<Pair<Integer, Integer>> sol) {
             double penalty = 0.0;
             int len = conflictsMatrix.size();
@@ -631,6 +640,46 @@ class Timetable {
                 }
             }
             return penalty / students.size();
+        }
+
+        public double getPenaltyByTimeslotChanges(double prevPenalty, ArrayList<Pair<Integer, Integer>> moves, ArrayList<Pair<Integer, Integer>> sol) {
+            int len = conflictsMatrix.size();
+            int numMoves = moves.size();
+            for(int t = 0; t < numMoves; t ++) {
+                for(int i = 0; i < len; i ++) {
+                    int conflict = conflictsMatrix.get(i).second.get(moves.get(t).first).second;
+                    if(conflict > 0) {
+                        int iTimeslot = sol.get(i).second;
+                        for(int j = 0; j < numMoves; j ++) {
+                            if(i == moves.get(j).first)
+                                iTimeslot = moves.get(j).second;
+                        }      
+                        int diff = Math.abs(iTimeslot - moves.get(t).second);
+                        int prevDiff = Math.abs(sol.get(i).second - sol.get(moves.get(t).first).second);
+                        if(prevDiff < 5)
+                            prevPenalty -= conflict * Math.pow(2, 4 - prevDiff);
+                        if(diff < 5)
+                            prevPenalty += conflict * Math.pow(2, 4 - diff);
+                    }
+                }
+            }
+            return prevPenalty;
+        }
+
+        public double updatePenaltyMove1(double prevPenalty, int randCourse, int randTimeSlot, ArrayList<Pair<Integer, Integer>> sol) {
+            int len = conflictsMatrix.size();
+            for(int i = 0; i < len; i ++) {
+                int conflict = conflictsMatrix.get(i).second.get(randCourse).second;
+                if(conflict > 0) {
+                    int diff = Math.abs(sol.get(i).second - randTimeSlot);
+                    int prevDiff = Math.abs(sol.get(i).second - sol.get(randCourse).second);
+                    if(prevDiff < 5)
+                       prevPenalty -= conflict * Math.pow(2, 4 - prevDiff);
+                    if(diff < 5)
+                       prevPenalty += conflict * Math.pow(2, 4 - diff);
+                }
+            }
+            return prevPenalty;
         }
 
        // double eventInPeriodNumber()
